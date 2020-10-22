@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RolEditDlg" 
+                  widgetVar="RolEditDialog" 
+                  modal="true" 
+                  resizable="false" 
+                  appendTo="@(body)" 
+                  closeOnEscape="true"
+                  header="#{bundle.EditRolTitle}">
+            <h:form id="RolEditForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{rolController.selected != null}">
+                        <p:outputLabel value="Rol" for="gru_nombre" />
+                        <p:inputText id="gru_nombre" value="#{rolController.selected.gru_nombre}" title="Nombre del nuevo rol}" autocomplete="off" />
+                        <p:outputLabel value="Alias" for="gru_id" />
+                        <p:selectOneMenu id="gru_id" value="#{rolController.selected.gru_id}" style="width:125px" title="Identificador o alias del nuevo rol">
+                            <f:selectItem itemLabel="-- Seleccion --" itemValue="" />
+                            <f:selectItem itemLabel="Administrador" itemValue="ADMIN" />
+                        </p:selectOneMenu>                        
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{rolController.update}" value="Guardar" update="display,idFrmBaseLayoutMenuLeft:RolListForm:datalist" oncomplete="handleSubmit(args, 'RolEditDialog');" onclick="RolCreateDialog.hide()"/>
+                    <p:commandButton value="Cancelar" onclick="RolEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

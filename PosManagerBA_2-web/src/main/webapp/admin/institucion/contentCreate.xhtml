@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./../../TemplateBA/baseLayoutMenuLeft.xhtml"> 
+        
+            <ui:define name="content">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <h3>INSTITUCIONES</h3>
+                        <h4>Crear</h4>
+                    </li>
+                    <li class="list-inline-item"  style="float: inline-end;">
+                        <ui:include
+                            src="/logout.xhtml" />
+                    </li>
+                </ul>
+
+                <b:form id="idFrmNuevaInstitucion">
+                    <b:row>
+                        <b:column>
+                            <b:formGroup>
+                                <b:form id="loginForm">
+                                    <b:focus target="idLblNombre"/>
+                                    <b:inputText id="idLblNombre"
+                                                 required="true"
+                                                 label="Nombre:" style="width:200px;"
+                                                 labelStyle="width:80px;"
+                                                 value="#{institucionController.selected.nombre}"/>
+                                    <b:message for="@previous" />
+                                </b:form>
+                            </b:formGroup>
+                        </b:column>
+                    </b:row>
+                    <b:commandButton id="idBtnSaveInstitucion" 
+                                     type="submit"
+                                     actionListener="#{institucionController.create()}"
+                                     value="Guardar"/>
+                    <b:button look="link"
+                              value="Cancelar"
+                              href="listar"/>
+                </b:form>
+
+            </ui:define>
+
+        </ui:composition>
+    </body>
+
+</html>

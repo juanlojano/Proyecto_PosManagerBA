@@ -1,0 +1,271 @@
+<pretty-config xmlns="http://ocpsoft.com/prettyfaces/3.3.0"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.0
+               http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.0.xsd">
+    
+
+    <!--LOGIN-->
+    <url-mapping id="index">
+        <pattern value="/index" />
+        <view-id value="/faces/index.xhtml" />
+    </url-mapping>
+    
+    <!--LOGIN-->
+    <url-mapping id="login">
+        <pattern value="/login" />
+        <view-id value="/faces/login.xhtml" />
+    </url-mapping>
+    
+    <!--LOGIN_ERROR-->
+    <url-mapping id="loginError">
+        <pattern value="/loginError" />
+        <view-id value="/faces/loginError.xhtml" />
+    </url-mapping>
+    
+    <!--ERROR-->
+    <url-mapping id="errorPage">
+        <pattern value="/errorPage" />
+        <view-id value="/faces/errorPage.xhtml" />
+    </url-mapping>
+    
+    <!--AUTORIZACIÓN-->
+    <url-mapping id="listadoautorizacion">
+        <pattern value="/admin/autorizacion/listar" />
+        <view-id value="/faces/admin/autorizacion/contentList.xhtml" />
+    </url-mapping>
+    <url-mapping id="verautorizacionautorizacion">
+        <pattern value="/admin/autorizacion/ver" />
+        <view-id value="/faces/admin/autorizacion/contentView.xhtml" />
+    </url-mapping>
+    
+    <!--FACTURAS-->    
+    <url-mapping id="listarfactura">
+        <pattern value="/admin/factura/listar"/>
+        <view-id value="/faces/admin/factura/contentList.xhtml" />
+    </url-mapping>
+    <url-mapping id="verfactura">
+        <pattern value="/admin/factura/ver"/>
+        <view-id value="/faces/admin/factura/contentView.xhtml" />
+    </url-mapping>
+    <url-mapping id="verautorizacion">
+        <pattern value="/admin/factura/verAutorizacion/" />
+        <view-id value="/faces/admin/factura/verAutorizacion.xhtml" />
+    </url-mapping>
+    <url-mapping id="vercomercio">
+        <pattern value="/admin/comercio/ver" />
+        <view-id value="/faces/admin/comercio/contentView.xhtml" />
+    </url-mapping>
+    
+    
+    <!--COMERCIO-->    
+    <url-mapping id="crearcomercio">
+        <pattern value="/admin/comercio/crear" />
+        <view-id value="/faces/admin/comercio/contentCreate.xhtml" />
+    </url-mapping>
+    <url-mapping id="editarcomercio">
+        <pattern value="/admin/comercio/editar" />
+        <view-id value="/faces/admin/comercio/contentEdit.xhtml" />
+    </url-mapping>
+    <url-mapping id="listarcomercio">
+        <pattern value="/admin/comercio/listar" />
+        <view-id value="/faces/admin/comercio/contentList.xhtml" />
+    </url-mapping>
+    <url-mapping id="vercomercio">
+        <pattern value="/admin/comercio/ver" />
+        <view-id value="/faces/admin/comercio/contentView.xhtml" />
+    </url-mapping>
+    
+    <!--TERMINAL CAJA-->    
+    <url-mapping id="crearcaja">
+        <pattern value="/admin/caja/crear" />
+        <view-id value="/faces/admin/terminalCaja/contentCreate.xhtml" />
+    </url-mapping>
+    <url-mapping id="editarcaja">
+        <pattern value="/admin/caja/editar" />
+        <view-id value="/faces/admin/terminalCaja/contentEdit.xhtml" />
+    </url-mapping>
+    <url-mapping id="listarcaja">
+        <pattern value="/admin/caja/listar" />
+        <view-id value="/faces/admin/terminalCaja/contentList.xhtml" />
+    </url-mapping>
+    <url-mapping id="vercaja">
+        <pattern value="/admin/caja/ver" />
+        <view-id value="/faces/admin/terminalCaja/contentView.xhtml" />
+    </url-mapping>
+
+    <!--TERMINAL PINPAD-->    
+    <url-mapping id="crearpinpad">
+        <pattern value="/admin/pinpad/crear" />
+        <view-id value="/faces/admin/terminalPinPad/contentCreate.xhtml" />
+    </url-mapping>
+    <url-mapping id="editarpinpad">
+        <pattern value="/admin/pinpad/editar" />
+        <view-id value="/faces/admin/terminalPinPad/contentEdit.xhtml" />
+    </url-mapping>
+    <url-mapping id="listarpinpad">
+        <pattern value="/admin/pinpad/listar" />
+        <view-id value="/faces/admin/terminalPinPad/contentList.xhtml" />
+    </url-mapping>
+    <url-mapping id="verpinpad">
+        <pattern value="/admin/pinpad/ver" />
+        <view-id value="/faces/admin/terminalPinPad/contentView.xhtml" />
+    </url-mapping>
+
+    <!--BINES-TARJETAS-->    
+    <!--BIN-->    
+    <url-mapping id="crearbin">
+        <pattern value="/admin/bin/crear" />
+        <view-id value="/faces/admin/bin/contentCreate.xhtml" />
+    </url-mapping>
+    <url-mapping id="editarbin">
+        <pattern value="/admin/bin/editar" />
+        <view-id value="/faces/admin/bin/contentEdit.xhtml" />
+    </url-mapping>
+    <url-mapping id="listarbin">
+        <pattern value="/admin/bin/listar" />
+        <view-id value="/faces/admin/bin/contentList.xhtml" />
+    </url-mapping>
+    <url-mapping id="verbin">
+        <pattern value="/admin/bin/ver" />
+        <view-id value="/faces/admin/bin/contentView.xhtml" />
+    </url-mapping>
+    
+    <!--INSTITUCIÓN-->    
+    <url-mapping id="crearinstitucion">
+        <pattern value="/admin/institucion/crear" />
+        <view-id value="/faces/admin/institucion/contentCreate.xhtml" />
+    </url-mapping>
+    <url-mapping id="editarinstitucion">
+        <pattern value="/admin/institucion/editar" />
+        <view-id value="/faces/admin/institucion/contentEdit.xhtml" />
+    </url-mapping>
+    <url-mapping id="listarinstitucion">
+        <pattern value="/admin/institucion/listar" />
+        <view-id value="/faces/admin/institucion/contentList.xhtml" />
+    </url-mapping>
+    <url-mapping id="verinstitucion">
+        <pattern value="/admin/institucion/ver" />
+        <view-id value="/faces/admin/institucion/contentView.xhtml" />
+    </url-mapping>
+    
+    <!--PLAZO-->    
+    <url-mapping id="crearplazo">
+        <pattern value="/admin/plazo/crear" />
+        <view-id value="/faces/admin/plazo/contentCreate.xhtml" />
+    </url-mapping>
+    <url-mapping id="editarplazo">
+        <pattern value="/admin/plazo/editar" />
+        <view-id value="/faces/admin/plazo/contentEdit.xhtml" />
+    </url-mapping>
+    <url-mapping id="listarplazo">
+        <pattern value="/admin/plazo/listar" />
+        <view-id value="/faces/admin/plazo/contentList.xhtml" />
+    </url-mapping>
+    <url-mapping id="verplazo">
+        <pattern value="/admin/plazo/ver" />
+        <view-id value="/faces/admin/plazo/contentView.xhtml" />
+    </url-mapping>
+    
+    <!--TIPO DIFERIDO-->    
+    <url-mapping id="creartipodiferido">
+        <pattern value="/admin/tipoDiferido/crear" />
+        <view-id value="/faces/admin/tipoDiferido/contentCreate.xhtml" />
+    </url-mapping>
+    <url-mapping id="editartipodiferido">
+        <pattern value="/admin/tipoDiferido/editar" />
+        <view-id value="/faces/admin/tipoDiferido/contentEdit.xhtml" />
+    </url-mapping>
+    <url-mapping id="listartipodiferido">
+        <pattern value="/admin/tipoDiferido/listar" />
+        <view-id value="/faces/admin/tipoDiferido/contentList.xhtml" />
+    </url-mapping>
+    <url-mapping id="vertipodiferido">
+        <pattern value="/admin/tipoDiferido/ver" />
+        <view-id value="/faces/admin/tipoDiferido/contentView.xhtml" />
+    </url-mapping>
+    
+    
+    <!--TIPO PAGO-->    
+    <url-mapping id="creartipopago">
+        <pattern value="/admin/tipoPago/crear" />
+        <view-id value="/faces/admin/tipoPago/contentCreate.xhtml" />
+    </url-mapping>
+    <url-mapping id="editartipopago">
+        <pattern value="/admin/tipoPago/editar" />
+        <view-id value="/faces/admin/tipoPago/contentEdit.xhtml" />
+    </url-mapping>
+    <url-mapping id="listartipopago">
+        <pattern value="/admin/tipoPago/listar" />
+        <view-id value="/faces/admin/tipoPago/contentList.xhtml" />
+    </url-mapping>
+    <url-mapping id="vertipopago">
+        <pattern value="/admin/tipoPago/ver" />
+        <view-id value="/faces/admin/tipoPago/contentView.xhtml" />
+    </url-mapping>
+    
+    
+    
+
+    <!--USUARIOS-->    
+    <url-mapping id="crearusuario">
+        <pattern value="/admin/usuario/crear"/>
+        <view-id value="/faces/admin/usuarios/contentCreate.xhtml" />
+    </url-mapping>
+    <url-mapping id="editarusuario">
+        <pattern value="/admin/usuario/editar"/>
+        <view-id value="/faces/admin/usuarios/contentEdit.xhtml" />
+    </url-mapping>
+    <url-mapping id="listarusuario">
+        <pattern value="/admin/usuario/listar" />
+        <view-id value="/faces/admin/usuarios/contentList.xhtml" />
+    </url-mapping>
+    <url-mapping id="verusuario">
+        <pattern value="/admin/usuario/ver" />
+        <view-id value="/faces/admin/usuarios/contentView.xhtml" />
+    </url-mapping>
+
+    <!--ROLES USUARIOS-->    
+    <url-mapping id="crearrolusuario">
+        <pattern value="/admin/rolusuario/crear"/>
+        <view-id value="/faces/admin/rolesUsuario/contentCreate.xhtml" />
+    </url-mapping>
+    <url-mapping id="editarrolusuario">
+        <pattern value="/admin/rolusuario/editar"/>
+        <view-id value="/faces/admin/rolesUsuario/contentEdit.xhtml" />
+    </url-mapping>
+    <url-mapping id="listarrolusuario">
+        <pattern value="/admin/rolusuario/listar" />
+        <view-id value="/faces/admin/rolesUsuario/contentList.xhtml" />
+    </url-mapping>
+    <url-mapping id="verrolusuario">
+        <pattern value="/admin/rolusuario/ver" />
+        <view-id value="/faces/admin/rolesUsuario/contentView.xhtml" />
+    </url-mapping>
+    
+    <!--CIERRES PINPAD-->    
+    <url-mapping id="listarpinpadcierre">
+        <pattern value="/admin/pinpad/cierre" />
+        <view-id value="/faces/admin/cierrePinpad/contentList.xhtml" />
+    </url-mapping>
+    
+    <!--CONCILIACIONES-->    
+    <url-mapping id="listarConciliacion">
+        <pattern value="/admin/conciliacion/listar" />
+        <view-id value="/faces/admin/conciliacion/contentList.xhtml" />
+    </url-mapping>
+    
+    <!--LOTE-->    
+    <url-mapping id="listarLote">
+        <pattern value="/admin/lote/listar" />
+        <view-id value="/faces/admin/lote/contentList.xhtml" />
+    </url-mapping>
+    
+    <!--ROLES-->    
+    <url-mapping id="listarRoles">
+        <pattern value="/rol/listar" />
+        <view-id value="/faces/rol/List.xhtml" />
+    </url-mapping>
+    
+</pretty-config>
+
+

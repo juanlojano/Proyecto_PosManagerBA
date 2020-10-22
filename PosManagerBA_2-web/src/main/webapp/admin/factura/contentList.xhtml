@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="./../../TemplateBA/baseLayoutMenuLeft.xhtml">
+            <h:outputScript library="js" name="./../resources/js/sweetalert.min.js" target="head" />
+
+            <ui:define name="content">
+                <b:form id="idFormFacturas">
+                    <b:row id="idRowFacturas">
+                        <b:column col-md="12" col-xs="12">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h3>FACTURAS</h3>
+                                </li>
+                                <li class="list-inline-item"  style="float: inline-end;">
+                                    <ui:include
+                                        src="/logout.xhtml" />
+                                </li>
+
+                                <li class="list-iline-item">
+                                    <b:buttonGroup>
+                                        <b:dropButton look="info" value="Menu" hidden="lg,md,sm">
+                                            <b:navLink value="Autorizacion" 
+                                                       onclick="ajax:loginController.navToAuth()"
+                                                       icon-awesome="gear">
+                                            </b:navLink>
+                                            <b:navLink value="Facturas" 
+                                                       onclick="ajax:loginController.navToFacturas()"
+                                                       icon-awesome="clipboard">
+                                            </b:navLink>
+                                            <b:navLink value="Comercio" 
+                                                       onclick="ajax:loginController.navToComercio()"
+                                                       icon-awesome="th">
+                                            </b:navLink>
+                                            <b:navLink value="Caja" 
+                                                       onclick="ajax:loginController.navToCaja()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                            <b:navLink value="PinPad" 
+                                                       onclick="ajax:loginController.navToPinpad()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                            <b:navLink value="Lote" 
+                                                       onclick="ajax:loginController.navToLote()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                            <b:navLink value="Cierres" 
+                                                       onclick="ajax:loginController.navToCierrePinpad()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                        </b:dropButton>
+                                    </b:buttonGroup>                                    
+                                </li>
+                            </ul>
+                            <p:dataTable id="idDtblAuth0" var="_fac" 
+                                         value="#{facturaController.model}"
+                                         reflow="true"
+                                         paginator="true" 
+                                         style="widthpassword:1024px; font-size: small"
+                                         rows="5" paginatorPosition="bottom" 
+                                         paginatorTemplate=
+                                         "{RowsPerPageDropdown} {FirstPageLink}
+                                         {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                         lazy="true">
+
+                                <p:column headerText="ID" sortBy="#{_fac.id}">
+                                    <h:outputText value="#{_fac.id}"/>
+                                </p:column>
+
+                                <p:column headerText="Código" sortBy="#{_fac.codFactura}">
+                                    <h:outputText value="#{_fac.codFactura}"/>
+                                </p:column>
+
+                                <p:column headerText="Fecha" sortBy="#{_fac.fecha}">
+                                    <h:outputText value="#{_fac.fecha}"/>
+                                </p:column>
+
+                                <p:column headerText="Total" sortBy="#{_fac.total}">
+                                    <h:outputText value="#{_fac.total}"/>
+                                </p:column>
+
+                                <p:column headerText="Acciones" style="text-align: -moz-center;">
+                                    <b:commandButton icon-awesome="eye" 
+                                                     process="@this" 
+                                                     ajax="false"
+                                                     action="#{facturaController.verFactura(_fac)}"/>
+                                    <b:commandButton icon-awesome="file" 
+                                                     process="@this" 
+                                                     title="#{facturaController.mostrarMensaje(_fac)}"
+                                                     disabled="#{facturaController.verificarAutorizacion(_fac)}"
+                                                     action="#{facturaController.verAutorizacionDeFactura(_fac)}"/>
+                                </p:column>
+                            </p:dataTable>
+
+                            <p:blockUI block="idDtblAuth0" trigger="idDtblAuth0">
+                                LOADING<br />
+                                <p:graphicImage name="resources/gif/ajaxloadingbar.gif"/>
+                            </p:blockUI>
+
+                        </b:column>
+                    </b:row>
+                </b:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

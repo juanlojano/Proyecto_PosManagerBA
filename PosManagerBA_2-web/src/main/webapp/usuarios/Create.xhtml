@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:of="http://omnifaces.org/functions"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuarioCreateDlg" 
+                  widgetVar="UsuarioCreateDialog" 
+                  modal="true" 
+                  resizable="false" 
+                  closeOnEscape="true"
+                  appendTo="@(body)" 
+                  header="#{bundle.CreateUsuarioTitle}">
+            <h:form id="UsuarioCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="3" rendered="#{usuarioController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateUsuarioLabel_usu_nombre}" for="usu_nombre" />
+                        <p:inputText id="usu_nombre" 
+                                     value="#{usuarioController.selected.usu_nombre}" 
+                                     title="#{bundle.CreateUsuarioTitle_usu_nombre}" 
+                                     required="true" 
+                                     maxlength="25"
+                                     validator="noBlankSpaceValidator"
+                                     requiredMessage="#{bundle.CreateUsuarioRequiredMessage_usu_nombre}" 
+                                     autocomplete="off">
+                            <f:validateLength minimum="1" maximum="25" />
+                        </p:inputText>
+                        <p:message for="@previous"/>                        
+
+                        <p:outputLabel value="#{bundle.CreateUsuarioLabel_usu_login}" for="usu_login" />
+                        <p:inputText id="usu_login" 
+                                     maxlength="25"
+                                     validator="noBlankSpaceValidator"
+                                     value="#{usuarioController.selected.usu_login}" 
+                                     title="#{bundle.CreateUsuarioTitle_usu_login}" 
+                                     autocomplete="off" >
+                            <f:validateLength minimum="1" maximum="25" />
+                        </p:inputText>
+                        <p:message for="@previous"/>                        
+
+                        <p:outputLabel value="#{bundle.CreateUsuarioLabel_usu_password}" for="usu_password" />
+                        <p:password id="usu_password" 
+                                    value="#{usuarioController.selected.usu_password}" 
+                                    maxlength="25"
+                                    validator="noBlankSpaceValidator"
+                                    autocomplete="off">
+                            <f:validateLength minimum="1" maximum="25" />
+                        </p:password>
+                        <p:message for="@previous"/>                        
+
+                        <p:outputLabel value="Rol"/>
+                        <p:selectOneMenu id="idSelectOne"  
+                                         required="true" label="Rol"
+                                         converter="omnifaces.SelectItemsConverter" 
+                                         value="#{usuarioController.rolSelected}" 
+                                         style="width: 13pc;">
+                            <f:selectItem noSelectionOption="true" itemLabel="--Seleccione--"/>
+                            <f:selectItems value="#{usuarioController.rolesItems}" 
+                                           var="_rol" 
+                                           itemValue="#{_rol}" 
+                                           itemLabel="#{_rol.gru_nombre}"/>
+                        </p:selectOneMenu>
+                        <p:message for="@previous"/>                        
+
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{usuarioController.create}" value="#{bundle.Save}" update="display,idFrmBaseLayoutMenuLeft:UsuarioListForm:datalist" oncomplete="handleSubmit(args,'UsuarioCreateDialog');" onclick="UsuarioCreateDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UsuarioCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

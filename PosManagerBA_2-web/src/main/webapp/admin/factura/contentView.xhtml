@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../../TemplateBA/baseLayoutMenuLeft.xhtml">
+
+            <ui:define name="content">
+                <ui:include
+                    src="/logout.xhtml" />
+
+                <h3>FACTURA: #{facturaController.currentFactura.codFactura}</h3>
+                <b:row>
+                    <b:column col-md="4">
+                        <br></br>
+                        <b:form horizontal="true">
+                            <b:inputText label-small-screen="4" 
+                                         small-screen="8" 
+                                         disabled="true"
+                                         label="Código:"
+                                         style="width: 200px;"
+                                         value="#{facturaController.currentFactura.codFactura}"/>
+                            <b:inputText label-small-screen="4" 
+                                         disabled="true"
+                                         small-screen="8"  
+                                         style="width: 200px;"
+                                         label="Fecha:"
+                                         value="#{facturaController.currentFactura.fecha}"/>
+                            <b:inputText label-small-screen="4" 
+                                         small-screen="8"  
+                                         style="width: 200px;"
+                                         disabled="true"
+                                         label="Subtotal:"
+                                         value="#{facturaController.currentFactura.subTotal}"/>
+                            <b:inputText label-small-screen="4" 
+                                         small-screen="8"  
+                                         style="width: 200px;"
+                                         disabled="true"
+                                         label="IVA:"
+                                         value="#{facturaController.currentFactura.iva}"/>
+                            <b:inputText label-small-screen="4" 
+                                         small-screen="8"  
+                                         style="width: 200px;"
+                                         disabled="true"
+                                         label="Total:"
+                                         value="#{facturaController.currentFactura.total}"/>
+                        </b:form>                        
+                    </b:column>
+                    <b:column col-md="8">
+                        <b:dataTable id="idDtblBaseConsumo"
+                                     lang="es" 
+                                     var="_baseconsumo" 
+                                     col-lg="12" 
+                                     col-md="12" 
+                                     col-sm="12" 
+                                     searching="false"
+                                     page-length="2"
+                                     responsive="true"  
+                                     style="font-size: smaller; width: auto"
+                                     value="#{facturaController.currentFactura.baseConsumos}">
+                            <b:dataTableColumn label="Descripción" value="#{_baseconsumo.descripcion}"/>
+                            <b:dataTableColumn label="Tarifa" value="#{_baseconsumo.tarifa}"/>
+                            <b:dataTableColumn label="Valor" value="#{_baseconsumo.valor}"/>
+                        </b:dataTable>                                                    
+                    </b:column>
+                </b:row>
+
+                <b:button look="link"
+                          value="Cancelar"
+                          href="listar"/>
+
+
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

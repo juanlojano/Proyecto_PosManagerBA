@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../TemplateBA/baseLayoutMenuLeft.xhtml">
+
+            <ui:define name="content">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <h3>COMERCIOS</h3>
+                        <h4>Editar</h4>
+                    </li>
+                    <li class="list-inline-item"  style="float: inline-end;">
+                        <ui:include
+                            src="/logout.xhtml" />
+                    </li>
+                </ul>
+
+                <b:form id="idFrmEditarComercio">
+                    <b:row>
+                        <b:column hidden="lg,md,sm,xs">
+                            <b:inputText id="idLblId" 
+                                         label="Id" style="width:200px;"
+                                         labelStyle="width:80px;"
+                                         value="#{comercioController.selected.id}">
+                            </b:inputText>
+                        </b:column>
+                        <b:column >
+                            <b:formGroup>
+                                <b:focus target="idLblCodigo"/>
+                                <b:inputText id="idLblCodigo" 
+                                             autocomplete="off"
+                                             required="true"
+                                             maxlength="20"
+                                             onkeypress="return validarNumeros(event)"
+                                             validatorMessage="Solo se permiten números"
+                                             validator="noBlankSpaceValidator" 
+                                             label="Código:" style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{comercioController.selected.codComercio}">
+                                    <f:validateLength minimum="3" maximum="20" />
+                                    <f:validateRegex pattern="[0-9]*"/>
+                                </b:inputText>
+                                <b:message for="@previous" />
+                                <b:inputText id="idLblRUCBA" 
+                                             required="true"
+                                             autocomplete="off"
+                                             validator="noBlankSpaceValidator" 
+                                             onkeypress="return validarNumeros(event)"
+                                             validatorMessage="Solo se permiten números"
+                                             maxlength="13"
+                                             label="RUC:" style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{comercioController.selected.ruc}">
+                                    <f:validateLength minimum="13" maximum="13" />
+                                    <f:validateRegex pattern="[0-9]*"/>
+                                </b:inputText>
+                                <b:message for="@previous" />
+                                <b:inputText id="idLblCodigoBA" 
+                                             required="true"
+                                             maxlength="20"
+                                             autocomplete="off"
+                                             validatorMessage="Solo se permiten números"
+                                             onkeypress="return validarNumeros(event)"
+                                             validator="noBlankSpaceValidator" 
+                                             label="Código BA:" style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{comercioController.selected.codComercioBa}">
+                                    <f:validateLength minimum="3" maximum="20" />
+                                    <f:validateRegex pattern="[0-9]*"/>
+                                </b:inputText>
+                                <b:message for="@previous" />
+                                <b:inputText id="idLblNombre"
+                                             required="true"
+                                             maxlength="40"
+                                             autocomplete="off"
+                                             validator="noBlankSpaceValidator" 
+                                             label="Nombre:" style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{comercioController.selected.nombre}">
+                                    <f:validateLength minimum="3" maximum="40" />
+                                </b:inputText>
+                                <b:message for="@previous" />
+                                <b:inputText id="idLblNombreCiudad"
+                                             required="true"
+                                             maxlength="40"
+                                             autocomplete="off"
+                                             validator="noBlankSpaceValidator" 
+                                             label="Ciudad:" style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{comercioController.selected.ciudad}">
+                                    <f:validateLength minimum="3" maximum="40" />
+                                </b:inputText>
+                                <b:message for="@previous" />
+                            </b:formGroup>
+                        </b:column>
+                    </b:row>
+                    <b:commandButton id="idBtnSaveComercio" 
+                                     type="submit" 
+                                     actionListener="#{comercioController.update()}"
+                                     value="Guardar"/>
+
+                    <b:button look="link"
+                              value="Cancelar"
+                              href="listar"/>
+                </b:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

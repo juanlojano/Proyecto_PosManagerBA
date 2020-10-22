@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="/css/default.css"/>
+        <h:outputStylesheet name="/css/cssLayout.css"/>
+        <h:outputStylesheet name="/css/sweetalert.css"/>
+        <h:outputStylesheet name="/css/iziToast.min.css"/>
+        <h:outputScript library="js" name="iziToast.min.js"></h:outputScript>
+        <!--<script type="text/javascript" src="./../resources/js/sweet-alert.min.js"></script>-->
+    </h:head>
+
+    <h:body style="display: inline;">
+        <div class="TopBar" style="padding-left: 0pc; padding-right: 0pc;">
+            <div class="CenteredContent FullTableContent">
+                <div class="Phone">CONTÁCTENOS :: 1800 22 87 87</div>
+                <div class="Social">
+                    <a href="https://www.facebook.com/bancodelaustro" target="_blank">
+                        <i class="fa fa-facebook" style="color: white"></i>
+                    </a>
+                    <a href="https://twitter.com/bancodelaustro" target="_blank">
+                        <i class="fa fa-twitter" style="color: white"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/banco-del-austro" target="_blank">
+                        <i class="fa fa-linkedin" style="color: white"></i>
+                    </a>
+                    <a href="https://www.youtube.com/user/bancodelaustro/" target="_blank">
+                        <i class="fa fa-youtube-square" style="color: white"></i>
+                    </a>
+                    <a href="https://instagram.com/bancodelaustro/" target="_blank">
+                        <i class="fa fa-instagram" style="color: white"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="top">
+            <h:form id="idForm" style="background-color: white; height: 5pc;">
+                <b:panelGrid id="idPanelG" columns="2" class="image-responsive"> 
+                    <h:graphicImage style="padding-top: 15px; padding-left: 0pc;" 
+                                    value = "https://www.bancodelaustro.com/Portals/0/LogoBancoAustro.png?ver=2015-09-15-120249-137"/> 
+                </b:panelGrid>      
+            </h:form>
+            <p></p>
+
+        </div>
+        <b:form id="idFrmBaseLayoutMenuLeft">
+            <b:container fluid="true" id="idContainer">
+                <b:row id="idRow">
+                    <b:column class="sidebar" col-md="2" col-sm="2"  id="idColl" 
+                              hidden="xs" style="padding-left: 0px; width: 12pc !important">
+                        <b:pillLinks>
+                            <b:navLink value="Autorizacion" 
+                                       onclick="ajax:loginController.navToAuth()"
+                                       icon-awesome="cogs">
+                            </b:navLink>
+                        </b:pillLinks>
+                        <b:pillLinks>
+                            <b:navLink value="Facturas" 
+                                       onclick="ajax:loginController.navToFacturas()"
+                                       icon-awesome="cogs">
+                            </b:navLink>
+                        </b:pillLinks>
+                        <b:pillLinks>
+                            <b:navLink value="Comercio" 
+                                       onclick="ajax:loginController.navToComercio()"
+                                       icon-awesome="cogs">
+                            </b:navLink>
+                        </b:pillLinks>
+                        <b:pillLinks>
+                            <b:navLink value="Caja" 
+                                       onclick="ajax:loginController.navToCaja()"
+                                       icon-awesome="cogs">
+                            </b:navLink>
+                        </b:pillLinks>
+                        <b:pillLinks>
+                            <b:navLink value="PinPad" 
+                                       onclick="ajax:loginController.navToPinpad()"
+                                       icon-awesome="cogs">
+                            </b:navLink>
+                        </b:pillLinks>
+                        <b:pillLinks>
+                            <b:navLink value="Lote" 
+                                       onclick="ajax:loginController.navToLote()"
+                                       icon-awesome="cogs">
+                            </b:navLink>
+                        </b:pillLinks>
+                        <b:pillLinks>
+                            <b:navLink value="Cierres" 
+                                       onclick="ajax:loginController.navToCierrePinpad()"
+                                       icon-awesome="cogs">
+                            </b:navLink>
+
+                        </b:pillLinks>
+                    </b:column>
+                    <b:column id="idClmnContent" col-lg="10" col-md="10" col-sm="10">
+                        <ui:insert name="content">Content</ui:insert>
+                    </b:column>    
+                </b:row>
+            </b:container>
+        </b:form>
+        <div id="bottom" style="background-color: #036fab; color: #045491; border-color: white;">
+            <ui:insert name="footer" >
+                <footer>
+                    <h6 align="center" style="color: white;">Todos los derechos reservados © Banco del Austro 2018 | Términos de uso | Política de privacidad</h6>  
+                </footer>
+
+            </ui:insert>            
+        </div>
+    </h:body>
+</html>

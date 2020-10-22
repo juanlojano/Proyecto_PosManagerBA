@@ -1,0 +1,203 @@
+
+#top {
+    position: relative;
+    background-color: #036fab;
+    color: white;
+    padding: 5px;
+    margin: 0px 0px 10px 0px;
+}
+
+#bottom {
+    position: relative;
+    background-color: #c2dfef;
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+}
+
+#left {
+    float: left;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+.center_content {
+    position: relative;
+    background-color: #dddddd;
+    padding: 5pc;
+}
+
+.center_contentContent {
+    position: relative;
+    background-color: #dddddd;
+    padding: 0pc;
+}
+
+.left_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin-left: 170px;
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+#top a:link, #top a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+#bottom {
+    bottom: 0px !important;
+    width: 100% !important;
+    height: 50px;
+}
+
+
+.form-login {
+    display: inline-block;
+    text-align: center;
+    margin-left: 50%;
+    width: 250px !important;
+}
+
+
+.form-signin {
+    margin: 0 auto;
+    max-width: 330px;
+    padding: 15px;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    background: #317CBC;
+    color: white;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    border: 1px solid white;
+}
+
+.centered {
+    position:relative;
+    height: 100px;
+    margin:0 auto;
+    padding: 10% 0;
+}
+
+.ui-panelgrid td {
+    padding: 2px 5px ;
+}
+
+.ui-dialog { position: fixed; padding: 0; overflow: hidden; display:none; }
+
+
+.TopBar {
+    padding: 5px 0;
+}
+.TopBar {
+    padding: 5px 10px;
+}
+.TopBar {
+    background-color: #1B75BB;
+    font-family: 'UniversLTStdCn';
+    padding: 5px 0;
+    color: #fff;
+    font-size: 13px;
+}
+
+.CenteredContent {
+    width: 980px;
+}
+.CenteredContent {
+    width: 100%;
+}
+.CenteredContent {
+    width: 980px;
+    margin: 0 auto;
+}
+
+.FullTableContent {
+    display: table;
+}
+.FullTableContent {
+    display: table;
+}
+.FullTableContent {
+    display: table;
+    width: 100%;
+}
+.TopBar .Phone {
+    display: table-cell;
+    letter-spacing: -1px;
+    font: -moz-pull-down-menu;
+    font-weight: -moz-use-system-font;
+    font-weight: bold;
+}
+.TopBar .Social {
+    display: table-cell;
+    text-align: right;
+}
+
+
+
+.Logo {
+    padding-left: 10px;
+    display: block;
+    position: relative;
+}
+
+
+body { 
+    font-family: Helvetica, sans-serif; 
+    margin: 20px auto; 
+    padding: 0 20px; 
+    max-width: 980px; 
+    font-size: 13px !important;
+}
+
+img { 
+    border: 0; 
+    width: 100%; 
+    display: block; 
+    max-width: 100%; 
+}
+
+#cred { 
+    font-size: .7em; 
+    color: #aaa; 
+}
+a { 
+    color: #fff; 
+}
+
+#panelcss{
+    color: white !important;
+    background-color: white !important;
+    border-color: white !important;
+}
+
+#panel0css{
+    border-color: white !important;
+}
+
+.centered {
+    text-align: center;
+    margin-left: 50%;
+}

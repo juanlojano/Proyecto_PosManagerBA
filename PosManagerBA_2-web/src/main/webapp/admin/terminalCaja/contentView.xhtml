@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../TemplateBA/baseLayoutMenuLeft.xhtml">
+
+            <ui:define name="content">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <h3>CAJA</h3>
+                        <h4>Ver</h4>
+                    </li>
+                    <li class="list-inline-item"  style="float: inline-end;">
+                        <ui:include
+                            src="/logout.xhtml" />
+                    </li>
+                </ul>
+
+                <b:form id="idFrmViewCaja">
+
+                    <b:row>
+                        <b:column>
+                            <b:formGroup>
+                                <b:inputText id="idLblIP" 
+                                             label="IP" 
+                                             readonly="true"
+                                             style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{terminalCajaController.selected.ip}">
+                                </b:inputText>
+                                <b:inputText id="idLblCodOficinaCaja" 
+                                             label="Código Oficina" 
+                                             readonly="true"
+                                             style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{terminalCajaController.selected.codOficina}">
+                                </b:inputText>
+                                <b:inputText id="idLblCodTerminal" 
+                                             label="Codigo Terminal" 
+                                             readonly="true"
+                                             style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{terminalCajaController.selected.codTerminal}">
+                                </b:inputText>
+                                <b:inputText id="idLblComTerminalPinPad" 
+                                             label="Comercio" 
+                                             readonly="true"
+                                             style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{terminalCajaController.selected.comercio.nombre}">
+                                </b:inputText>
+                                <b:inputText id="idLblPPTerminalPinPad" 
+                                             label="PinPad" 
+                                             readonly="true"
+                                             style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{terminalCajaController.selected.pinpadPrincipal.ip}">
+                                </b:inputText>
+                            </b:formGroup>
+                        </b:column>
+                    </b:row>
+                    <b:button look="link"
+                              value="Cancelar"
+                              href="listar"/>
+                </b:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

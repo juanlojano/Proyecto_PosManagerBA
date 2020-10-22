@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+        <ui:composition template="TemplateBA/baseLayoutHeaderFooter.xhtml">
+            <ui:define name="content">
+                <b:form id="idLogin" class="form-signin">
+                    <h4 class="text-center" style="margin-bottom: 10px !important; font-size: 20px"><strong>INICIAR SESION</strong></h4>
+                    <b:formGroup>
+                        <b:inputText id="idUser" 
+                                     maxlength="16"
+                                     autocomplete="off"
+                                     typeahead="false"
+                                     class="form-control" 
+                                     type="text"  
+                                     value="#{loginController.username}"
+                                     name="Usuario: " 
+                                     onkeypress="return validarUsuario(event, 16)"
+                                     required="true"
+                                     requiredMessage="Se requiere usuario"
+                                     placeholder="Ingrese el usuario"/>
+                        <b:message for="@previous" />
+                        <b:inputText id="idPsw"
+                                     maxlength="25"
+                                     autocomplete="off"
+                                     typeahead="false"
+                                     class="form-control" 
+                                     type="password" 
+                                     value="#{loginController.password}"
+                                     name="Contraseña: " 
+                                     required="true"
+                                     requiredMessage="Se requiere contraseña"
+                                     placeholder="Ingrese la contraseña"/>
+                        <b:message for="@previous" />
+                        <b:commandButton class="btn-block" 
+                                         style="background-color: #2a522a !important;"
+                                         look="primary" 
+                                         value="Entrar"                                      
+                                         type="submit" 
+                                         action="#{loginController.login()}"
+                                         process="@form">
+                        </b:commandButton>
+                        <b:commandButton class="btn-block" 
+                                         look="info" 
+                                         style="background-color: #2a522a !important;"
+                                         value="Cancelar" 
+                                         process="@form" 
+                                         actionListener="#{loginController.cancel()}">
+                        </b:commandButton>
+
+                        <!--                        <h:outputLink value="usuarios/List.xhtml">
+                                                    <h:outputText value="Usuarios" style="float: inline-end;"/>
+                                                </h:outputLink>-->
+
+                        <b:messages id="errorMessages"></b:messages>
+
+                    </b:formGroup>
+                </b:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+
+    </body>
+</html>
+

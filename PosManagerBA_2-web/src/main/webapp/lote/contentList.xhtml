@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./../TemplateBA/baseLayoutMenuLeft.xhtml">
+            <ui:define name="content">
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:outputText escape="false" value="#{bundle.ListLoteEmpty}" rendered="#{loteController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{loteController.items.rowCount > 0}">
+                        <h:outputText value="#{loteController.pagination.pageFirstItem + 1}..#{loteController.pagination.pageLastItem + 1}/#{loteController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{loteController.previous}" value="#{bundle.Previous} #{loteController.pagination.pageSize}" rendered="#{loteController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{loteController.next}" value="#{bundle.Next} #{loteController.pagination.pageSize}" rendered="#{loteController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable value="#{loteController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListLoteTitle_id}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListLoteTitle_numeroLote}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.numeroLote}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListLoteTitle_pinpad}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.pinpad}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListLoteTitle_valor}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.valor}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                                <h:commandLink action="#{loteController.prepareView}" value="#{bundle.ListLoteViewLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{loteController.prepareEdit}" value="#{bundle.ListLoteEditLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{loteController.destroy}" value="#{bundle.ListLoteDestroyLink}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                    <br />
+                    <h:commandLink action="#{loteController.prepareCreate}" value="#{bundle.ListLoteCreateLink}"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" value="#{bundle.ListLoteIndexLink}"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="./../../TemplateBA/baseLayoutMenuLeft.xhtml">
+            <ui:define name="content">
+                <b:form id="idFrmTerminalPinPad" >
+                    <b:row>
+                        <b:column id="idColumnTerPP" col-md="12" col-xs="12">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h3>CIERRES DE PIN PAD</h3>
+                                </li>
+                                <li class="list-inline-item"  style="float: inline-end;">
+                                    <ui:include
+                                        src="/logout.xhtml" />
+                                </li>
+
+                                <li class="list-iline-item">
+                                    <b:buttonGroup>
+                                        <b:dropButton look="info" value="Menu" hidden="lg,md,sm">
+                                            <b:navLink value="Autorizacion" 
+                                                       onclick="ajax:loginController.navToAuth()"
+                                                       icon-awesome="gear">
+                                            </b:navLink>
+                                            <b:navLink value="Facturas" 
+                                                       onclick="ajax:loginController.navToFacturas()"
+                                                       icon-awesome="clipboard">
+                                            </b:navLink>
+                                            <b:navLink value="Comercio" 
+                                                       onclick="ajax:loginController.navToComercio()"
+                                                       icon-awesome="th">
+                                            </b:navLink>
+                                            <b:navLink value="Caja" 
+                                                       onclick="ajax:loginController.navToCaja()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                            <b:navLink value="PinPad" 
+                                                       onclick="ajax:loginController.navToPinpad()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                            <b:navLink value="Lote" 
+                                                       onclick="ajax:loginController.navToLote()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                            <b:navLink value="Cierres" 
+                                                       onclick="ajax:loginController.navToCierrePinpad()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                        </b:dropButton>
+                                    </b:buttonGroup>                                    
+                                </li>
+                            </ul>
+
+                            <br></br>
+
+                            <p:dataTable id="idDtbCheck" 
+                                         var="_pp" 
+                                         rows="5"
+                                         reflow="true"
+                                         resizeMode="fit"
+                                         paginator="true"
+                                         paginatorPosition="bottom"
+                                         value="#{cierreLoteController.items}" 
+                                         selection="#{cierreLoteController.pinpadsParaCierre}" 
+                                         rowKey="#{_pp.id}" 
+                                         style="margin-bottom:0; font-size: 13px !important">
+                                <f:facet name="header">
+                                    Pinpads
+                                </f:facet>
+                                <p:column selectionMode="multiple" 
+                                          style="width:44px;text-align:center"/>
+                                <p:column headerText="IP">
+                                    <h:outputText value="#{_pp.ip}" />
+                                </p:column>
+                                <p:column headerText="Puerto">
+                                    <h:outputText value="#{_pp.puerto}" />
+                                </p:column>
+                                <p:column headerText="Comercio">
+                                    <h:outputText value="#{_pp.comercio.nombre}" />
+                                </p:column>
+                                <p:column headerText="Estado">
+                                    <h:outputText value="#{_pp.estado}" />
+                                </p:column>
+                                <f:facet name="footer">
+                                    <p:commandButton process="idDtbCheck" 
+                                                     icon="ui-icon-newwin"
+                                                     update="idFrmBaseLayoutMenuLeft:idFrmTerminalPinPad:idDtbCheck"
+                                                     action="#{cierreLoteController.cerrarPinpads()}"
+                                                     onclick="PF('dlg0').show();"
+                                                     value="Cerrar Pinpads"/>
+                                    <p:commandButton process="idDtbCheck" 
+                                                     icon="ui-icon-newwin"
+                                                     action="#{cierreLoteController.obtenerLogCierres()}"
+                                                     onclick="PF('dlgLogCierres').show();"
+                                                     value="Log de cierres"/>
+                                </f:facet>
+                            </p:dataTable>                    
+
+                            <p:blockUI block="idDtbCheck" trigger="idDtbCheck">
+                                LOADING<br />
+                                <p:graphicImage name="resources/gif/ajaxloadingbar.gif"/>
+                            </p:blockUI>
+
+                        </b:column>
+                    </b:row>
+                </b:form>
+
+                <p:dialog widgetVar="dlg0" 
+                          showHeader="false"
+                          closable="false"
+                          resizable="false"
+                          responsive="true"
+                          closeOnEscape="false"
+                          minHeight="40" id="ipDialog00"
+                          style="width: 50pc !important;"
+                          modal="true">
+                    <p:graphicImage library="gif" name="ajaxloadingbar.gif" />
+                </p:dialog>
+
+                <p:dialog header="Realizando Proceso de cierre" 
+                          widgetVar="dlg" 
+                          closable="false"
+                          closeOnEscape="false"
+                          minHeight="40" id="ipDialog01"
+                          style="width: 50pc !important;"
+                          modal="true">
+                    <h:panelGrid id="idPanel01">
+                        <p:outputLabel value="Espere unos momentos mientras se realiza el proceso de cierre!" />
+                        <p:outputLabel value="Último cierre realizado!" />
+                        <h:outputText id="txt_count" value="#{cierreLoteController.msjs}" />
+                        <p:poll interval="1" listener="#{cierreLoteController.mostrarMsjCierre()}" update="txt_count" />
+                        <h:column>
+                            <p:commandButton id="idBt002" 
+                                             icon="ui-icon-newwin"
+                                             update="idFrmBaseLayoutMenuLeft:idFrmTerminalPinPad:idDtbCheck"
+                                             actionListener="#{cierreLoteController.cerrarDialog()}"
+                                             onclick="PF('dlg').hide(); idDtbCheck.unselectAllRows()"
+                                             value="Cerrar"/>
+                        </h:column>
+                    </h:panelGrid>
+                </p:dialog>
+                <p:dialog widgetVar="dlgLogCierres" 
+                          closable="true" position="center"
+                          style="width: 50pc !important; height: 25pc !important; font-size: 13px !important"
+                          closeOnEscape="true"
+                          minHeight="40" id="ipDialog02"
+                          modal="true">
+                    <h:panelGrid id="idPanel02">
+                        <p:dataList id="idList" value="#{cierreLoteController.obtenerLogCierres()}" var="_cierre" 
+                                    type="unordered" itemType="none" 
+                                    paginator="true" rows="10" styleClass="paginated">
+                            <f:facet name="header">completo
+                                Log de cierres
+                            </f:facet>
+                            <h:outputText value="ID: #{_cierre.id}  |  "/>
+                            <h:outputText value="IP: #{_cierre.ip}  |  "/>
+                            <h:outputText value="TID: #{_cierre.tid}  |  "/>
+                            <h:outputText value="ESTADO: #{_cierre.estado}  |  "/>
+                            <h:outputText value="FECHA: #{_cierre.fechaCierre}  |  "/>
+                            <h:outputText value="DETALLE: #{_cierre.descripcion}  |  "/>
+                        </p:dataList>                        
+
+                    </h:panelGrid>
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

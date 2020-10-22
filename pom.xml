@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.baustro</groupId>
+    <artifactId>PosManagerBA_2</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>PosManagerBA_2</name>
+    <modules>
+        <module>PosManagerBA_2-ear</module>
+        <module>PosManagerBA_2-web</module>
+        <module>PosManagerBA_2-ejb</module>
+    </modules>
+  
+    <properties>
+        <wildfly-maven-plugin-version>1.2.0.Alpha4</wildfly-maven-plugin-version>
+        <hostnameWildfly></hostnameWildfly>
+        <portWildfly></portWildfly>
+        <usernameWildfly></usernameWildfly>
+        <passwordWildfly></passwordWildfly>
+        <nameWildfly>PosManagerBA_2</nameWildfly>
+        
+        <build.sourceEncoding>UTF-8</build.sourceEncoding>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <appengine.app.version>1</appengine.app.version>
+        <appengine.target.version>1.9.53</appengine.target.version>
+        <appengine-maven-plugin-version>1.3.1</appengine-maven-plugin-version>
+        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        
+        <idNexusBASnapshotRepository></idNexusBASnapshotRepository>
+        <urlNexusBASnapshotRepository></urlNexusBASnapshotRepository>
+    </properties>
+    
+    <distributionManagement>
+        <snapshotRepository>
+            <id>${idNexusBASnapshotRepository}</id>
+            <url>${urlNexusBASnapshotRepository}</url>
+        </snapshotRepository>
+    </distributionManagement>    
+    <build>
+        <!-- To define the plugin version in your parent POM -->
+        <pluginManagement>
+            <plugins>  
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-maven-plugin</artifactId>
+                    <version>${wildfly-maven-plugin-version}</version>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.google.cloud.tools</groupId>
+                    <artifactId>appengine-maven-plugin</artifactId>
+                    <version>${appengine-maven-plugin-version}</version>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>${jetty-maven-plugin.version}</version>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>    
+
+</project>

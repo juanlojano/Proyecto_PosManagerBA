@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./../../TemplateBA/baseLayoutMenuLeft.xhtml">            
+            <ui:define name="content">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <h3>BIN TARJETA</h3>
+                        <h4>Ver</h4>
+                    </li>
+                    <li class="list-inline-item"  style="float: inline-end;">
+                        <ui:include
+                            src="/logout.xhtml" />
+                    </li>
+                </ul>
+                <b:form id="idFrmNuevoBin">
+                    <b:row>
+                        <b:column>
+                            <b:formGroup>
+                                <b:inputText id="idLblNumero"
+                                             label="Número" 
+                                             style="width:200px;"
+                                             readonly="true"
+                                             labelStyle="width:80px;"
+                                             value="#{binTarjetaController.selected.numero}">
+                                </b:inputText>
+                                <b:inputText id="idLblDescripcion"
+                                             label="Descripción" 
+                                             style="width:200px;"
+                                             readonly="true"
+                                             labelStyle="width:80px;"
+                                             value="#{binTarjetaController.selected.descripcion}">
+                                </b:inputText>
+                                <b:inputText id="idLblTipoPagoDescripcion"
+                                             label="Tipo Pago" 
+                                             style="width:200px;"
+                                             readonly="true"
+                                             labelStyle="width:80px;"
+                                             value="#{binTarjetaController.selected.tipoPago.descripcion}">
+                                </b:inputText>
+                            </b:formGroup>
+                        </b:column>
+                    </b:row>
+                    <b:button look="link"
+                              value="Cancelar"
+                              href="listar"/>
+                </b:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

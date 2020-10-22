@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CatalogoErrorEditDlg" widgetVar="CatalogoErrorEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCatalogoErrorTitle}">
+            <h:form id="CatalogoErrorEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{catalogoErrorController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCatalogoErrorLabel_codError}" for="codError" />
+                        <p:inputText id="codError" value="#{catalogoErrorController.selected.codError}" title="#{bundle.EditCatalogoErrorTitle_codError}" />
+                        <p:outputLabel value="#{bundle.EditCatalogoErrorLabel_descripcionTecnica}" for="descripcionTecnica" />
+                        <p:inputText id="descripcionTecnica" value="#{catalogoErrorController.selected.descripcionTecnica}" title="#{bundle.EditCatalogoErrorTitle_descripcionTecnica}" />
+                        <p:outputLabel value="#{bundle.EditCatalogoErrorLabel_descripcionUsuario}" for="descripcionUsuario" />
+                        <p:inputText id="descripcionUsuario" value="#{catalogoErrorController.selected.descripcionUsuario}" title="#{bundle.EditCatalogoErrorTitle_descripcionUsuario}" />
+                        <p:outputLabel value="#{bundle.EditCatalogoErrorLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{catalogoErrorController.selected.id}" title="#{bundle.EditCatalogoErrorTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{catalogoErrorController.update}" value="#{bundle.Save}" update="display,:CatalogoErrorListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CatalogoErrorEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CatalogoErrorEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

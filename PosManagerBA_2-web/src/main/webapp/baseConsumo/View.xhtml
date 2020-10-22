@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBaseConsumoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewBaseConsumoLabel_id}"/>
+                    <h:outputText value="#{baseConsumoController.selected.id}" title="#{bundle.ViewBaseConsumoTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewBaseConsumoLabel_tarifa}"/>
+                    <h:outputText value="#{baseConsumoController.selected.tarifa}" title="#{bundle.ViewBaseConsumoTitle_tarifa}"/>
+                    <h:outputText value="#{bundle.ViewBaseConsumoLabel_descripcion}"/>
+                    <h:outputText value="#{baseConsumoController.selected.descripcion}" title="#{bundle.ViewBaseConsumoTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewBaseConsumoLabel_tipo}"/>
+                    <h:outputText value="#{baseConsumoController.selected.tipo}" title="#{bundle.ViewBaseConsumoTitle_tipo}"/>
+                    <h:outputText value="#{bundle.ViewBaseConsumoLabel_valor}"/>
+                    <h:outputText value="#{baseConsumoController.selected.valor}" title="#{bundle.ViewBaseConsumoTitle_valor}"/>
+                    <h:outputText value="#{bundle.ViewBaseConsumoLabel_factura}"/>
+                    <h:outputText value="#{baseConsumoController.selected.factura}" title="#{bundle.ViewBaseConsumoTitle_factura}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{baseConsumoController.destroyAndView}" value="#{bundle.ViewBaseConsumoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewBaseConsumoEditLink}"/>
+                <br />
+                <h:commandLink action="#{baseConsumoController.prepareCreate}" value="#{bundle.ViewBaseConsumoCreateLink}" />
+                <br />
+                <h:commandLink action="#{baseConsumoController.prepareList}" value="#{bundle.ViewBaseConsumoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewBaseConsumoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

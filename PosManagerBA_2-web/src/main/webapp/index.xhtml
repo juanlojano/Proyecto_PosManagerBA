@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="./TemplateBA/baseLayoutHeaderFooter.xhtml">
+            <ui:define name="content" class="centered0">
+                <h:body id="idPanel0" style="display: inline;">
+                    <div id="id01" class="row text-center">
+                        <div id="id02" class="col-xs-12 col-md-12">
+                            <b:carousel disabled="true" style="max-width: 22pc; display: inline-block">
+                                <b:carouselItem>
+                                    <img src="resources/imgs/index1.jpg" alt="index" />
+                                </b:carouselItem>
+                                <b:carouselItem>
+                                    <img src="resources/imgs/index2.jpg" alt="index" />
+                                </b:carouselItem>
+                            </b:carousel>  
+                        </div>
+                        <div id="id03" class="col-xs-12 col-md-12" style="display: contents">
+                            <h1>Banco del Austro PINPAD</h1>
+                            <p>Bienvenido al sistema posmanager del banco del austro.</p>
+                            <p>Sistema para el manejo de los pagos por tarjetas de crédito mediante dispositivos pinpads</p>
+                            <a class="btn btn-lg btn-primary" 
+                               href="login.xhtml?faces-redirect=true" 
+                               role="button">
+                                <span>Entrar </span>
+                                <span><i class="glyphicon glyphicon-chevron-right"></i></span>
+                            </a>
+                        </div> 
+                    </div>
+
+                </h:body>
+
+                <p:dialog header="Add LPC" id="lpcDlg" widgetVar="dlg00" rendered="true"
+                          resizable="true" modal="true" height="320px"
+                          width="38%">
+                    <h:form id="addLpc">
+                    </h:form>
+                </p:dialog>        
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,109 @@
+body {
+    background-color: #ffffff;
+    font-size: 13px !important;
+    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;  
+    margin: 10px;
+}
+
+h1 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    border-bottom: 1px solid #AFAFAF; 
+    font-size:  16px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    color: #D20005;
+}
+
+a:link, a:visited {
+  color: #045491;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+  color: #045491;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+.space-content-default{
+    /*height: 500px;*/
+}
+
+.sidebar .nav-pills{
+    width: 100%;
+}
+
+.sidebar .nav-pills{
+    margin-left: 0;
+}
+
+#idTerminalPinPadComercio{
+    width: 13pc;
+}
+
+.modal-dialog{
+    width: 27pc !important;
+}
+
+.modal-dialog2{
+    width: 40pc !important;
+}
+
+#idFrmBaseLayoutMenuLeft\:amoda_id01\:amodalautorizacion_body {
+    height: 400px;
+    overflow-y: auto;
+}
+
+.panelGridCenter {
+    margin: 0 auto;
+}
+
+.TopBar {
+    padding: 5px 0;
+}
+.TopBar {
+    padding: 5px 10px;
+}
+.TopBar {
+    background-color: #1B75BB;
+    font-family: 'UniversLTStdCn';
+    padding: 5px 0;
+    color: #fff;
+    font-size: 13px;
+}
+
+.CenteredContent {
+    width: 980px;
+}
+.CenteredContent {
+    width: 100%;
+}
+.CenteredContent {
+    width: 980px;
+    margin: 0 auto;
+}
+
+.FullTableContent {
+    display: table;
+}
+.FullTableContent {
+    display: table;
+}
+.FullTableContent {
+    display: table;
+    width: 100%;
+}
+.TopBar .Phone {
+    display: table-cell;
+    letter-spacing: -1px;
+    font: -moz-pull-down-menu;
+    font-weight: -moz-use-system-font;
+    font-weight: bold;
+}
+.TopBar .Social {
+    display: table-cell;
+    text-align: right;
+}

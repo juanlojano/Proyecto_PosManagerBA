@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>        
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <body>
+        <ui:composition template="TemplateBA/baseLayoutHeaderFooter.xhtml">
+            <ui:define name="content">
+                <h:form id="idLogin" class="form-signin">
+                    <h4 class="text-center" style="margin-bottom: 10px !important; font-size: 30px">
+                        <strong> - ERROR - </strong></h4>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Cód:"/>
+                        <p:outputLabel value="#{loginController.objetoCatalogoError.codError}"/>
+                        <p:outputLabel value="Desc. Técnica: "/>
+                        <p:outputLabel value="#{loginController.objetoCatalogoError.descripcionTecnica}"/>
+                        <p:outputLabel value="Desc. Usuario: "/>
+                        <p:outputLabel value="#{loginController.objetoCatalogoError.descripcionUsuario}"/>
+                    </h:panelGrid>
+                    <h:panelGrid id="idPnlGridHome" 
+                                 styleClass="panelGridCenter">
+                        <p:commandButton action="#{loginController.volverHome()}"
+                                         id="idHome" 
+                                         icon="ui-icon-home" 
+                                         title="Home" />
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

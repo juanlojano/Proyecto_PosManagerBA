@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="./../../TemplateBA/baseLayoutMenuLeft.xhtml">
+            <ui:define name="content">
+                <b:form id="idFrmTerminalPinPad" >
+                    <b:row>
+                        <b:column id="idColumnTerPP" col-md="12" col-xs="12">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h3>PIN PAD</h3>
+                                </li>
+                                <li class="list-inline-item"  style="float: inline-end;">
+                                    <ui:include
+                                        src="/logout.xhtml" />
+                                </li>
+
+                                <li class="list-iline-item">
+                                    <b:container>
+                                        <b:commandButton look="primary"
+                                                         icon-awesome="plus"
+                                                         process="@this"
+                                                         action="#{terminalPinPadController.nuevo()}"
+                                                         value="Nuevo"
+                                                         update="@form"
+                                                         style="color: white">
+                                        </b:commandButton>
+
+                                    </b:container>
+                                </li>
+
+                                <li class="list-iline-item">
+                                    <b:buttonGroup>
+                                        <b:dropButton look="info" value="Menu" hidden="lg,md,sm">
+                                            <b:navLink value="Autorizacion" 
+                                                       onclick="ajax:loginController.navToAuth()"
+                                                       icon-awesome="gear">
+                                            </b:navLink>
+                                            <b:navLink value="Facturas" 
+                                                       onclick="ajax:loginController.navToFacturas()"
+                                                       icon-awesome="clipboard">
+                                            </b:navLink>
+                                            <b:navLink value="Comercio" 
+                                                       onclick="ajax:loginController.navToComercio()"
+                                                       icon-awesome="th">
+                                            </b:navLink>
+                                            <b:navLink value="Caja" 
+                                                       onclick="ajax:loginController.navToCaja()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                            <b:navLink value="PinPad" 
+                                                       onclick="ajax:loginController.navToPinpad()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                            <b:navLink value="Lote" 
+                                                       onclick="ajax:loginController.navToLote()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                            <b:navLink value="Cierres" 
+                                                       onclick="ajax:loginController.navToCierrePinpad()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                        </b:dropButton>
+                                    </b:buttonGroup>                                    
+                                </li>
+                            </ul>
+
+                            <br></br>
+
+                            <b:dataTable id="idDtblTerminalPinPad" 
+                                         lang="es" 
+                                         var="_terPP"
+                                         col-lg="12" 
+                                         col-md="12" 
+                                         col-sm="12" 
+                                         select="true"
+                                         ajax="true"
+                                         style="font-size: smaller"
+                                         selectionMode="single"
+                                         onselect="ajax:terminalPinPadController.onSelect(_terPP.id);"
+                                         page-length="5"
+                                         responsive="true"  
+                                         value="#{terminalPinPadController.items}">
+
+                                <b:dataTableColumn label="Código" value="#{_terPP.tid}"/>
+                                <b:dataTableColumn label="Ip" value="#{_terPP.ip}"/>
+                                <b:dataTableColumn label="Puerto" value="#{_terPP.puerto}"/>
+                                <b:dataTableColumn label="Comercio" value="#{_terPP.comercio.nombre}"/>
+                                <b:dataTableColumn label="Acciones" style="text-align: center; width: 120px;">
+                                    <b:buttonGroup>
+                                        <b:commandButton icon-awesome="eye" 
+                                                         process="@this"
+                                                         action="#{terminalPinPadController.verTerminalPP(_terPP)}">
+                                            <f:ajax execute="@form"/>         
+                                        </b:commandButton>
+                                        <b:commandButton icon-awesome="pencil" 
+                                                         ajax="false"
+                                                         process="@this"
+                                                         action="#{terminalPinPadController.editarTerminalPP(_terPP)}">
+                                            <f:ajax execute="@form"/>         
+                                        </b:commandButton>
+                                        <b:commandButton icon-awesome="trash" 
+                                                         onclick="$('.modalPseudoClass').modal();
+                                                                 return false;"
+                                                         p:data-target="#amodal"
+                                                         p:data-toggle="modal"/>
+                                    </b:buttonGroup>
+                                </b:dataTableColumn>
+                            </b:dataTable>
+                        </b:column>
+                    </b:row>
+                </b:form>
+
+                <b:form>
+                    <b:modal id= "amodal" 
+                             title="Confirmar eliminación" 
+                             styleClass="modalPseudoClass">
+                        <p>¿Seguro de eliminar?</p>
+                        <f:facet name="footer">
+                            <b:commandButton value="Si" 
+                                             ajax="true"
+                                             actionListener="#{terminalPinPadController.eliminarTerminalPinPad()}"/>
+                            <b:button value="Cancelar" dismiss="modal" />
+                        </f:facet>
+                    </b:modal>                        
+                </b:form>   
+
+            </ui:define>
+        </ui:composition>
+    </body>
+    <script>
+
+        function refreshPage() {
+            window.location.reload();
+        }
+
+
+    </script>    
+
+</html>

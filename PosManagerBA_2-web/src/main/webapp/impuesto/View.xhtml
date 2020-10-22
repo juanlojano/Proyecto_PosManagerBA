@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewImpuestoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewImpuestoLabel_factura}"/>
+                    <h:outputText value="#{impuestoController.selected.factura}" title="#{bundle.ViewImpuestoTitle_factura}"/>
+                    <h:outputText value="#{bundle.ViewImpuestoLabel_id}"/>
+                    <h:outputText value="#{impuestoController.selected.id}" title="#{bundle.ViewImpuestoTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewImpuestoLabel_valor}"/>
+                    <h:outputText value="#{impuestoController.selected.valor}" title="#{bundle.ViewImpuestoTitle_valor}"/>
+                    <h:outputText value="#{bundle.ViewImpuestoLabel_tipo}"/>
+                    <h:outputText value="#{impuestoController.selected.tipo}" title="#{bundle.ViewImpuestoTitle_tipo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{impuestoController.destroyAndView}" value="#{bundle.ViewImpuestoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewImpuestoEditLink}"/>
+                <br />
+                <h:commandLink action="#{impuestoController.prepareCreate}" value="#{bundle.ViewImpuestoCreateLink}" />
+                <br />
+                <h:commandLink action="#{impuestoController.prepareList}" value="#{bundle.ViewImpuestoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewImpuestoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

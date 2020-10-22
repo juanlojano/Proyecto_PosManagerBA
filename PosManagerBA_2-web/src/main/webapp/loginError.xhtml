@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>        
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <body>
+        <ui:composition template="TemplateBA/baseLayoutHeaderFooter.xhtml">
+            <ui:define name="content">
+                <b:form id="idLogin" class="form-signin">
+                    <h4 class="text-center" style="margin-bottom: 10px !important; font-size: 30px">
+                        <strong>ERROR EN EL INICIO DE SESION</strong>
+                        <h3 style="text-align: center">Ha alcanzado el número máximo de intentos permitidos.</h3>
+                        <h5 style="text-align: center">Asegurese de disponer de las credenciales de acceso.</h5>
+                        <h5 style="text-align: center">Intente mas tarde</h5>
+                    </h4>
+                </b:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

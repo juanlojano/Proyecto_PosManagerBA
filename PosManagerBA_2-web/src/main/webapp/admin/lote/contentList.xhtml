@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="./../../TemplateBA/baseLayoutMenuLeft.xhtml">
+            <ui:define name="content">
+                <b:form id="idFrmLote">
+                    <b:row>
+                        <b:column col-md="12" col-xs="12">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h3>LOTES</h3>
+                                </li>
+                                <li class="list-inline-item"  style="float: inline-end;">
+                                    <ui:include
+                                        src="/logout.xhtml" />
+                                </li>
+                                <li class="list-iline-item">
+                                    <b:buttonGroup>
+                                        <b:dropButton look="info" value="Menu" hidden="lg,md,sm">
+                                            <b:navLink value="Autorizacion" 
+                                                       onclick="ajax:loginController.navToAuth()"
+                                                       icon-awesome="gear">
+                                            </b:navLink>
+                                            <b:navLink value="Facturas" 
+                                                       onclick="ajax:loginController.navToFacturas()"
+                                                       icon-awesome="clipboard">
+                                            </b:navLink>
+                                            <b:navLink value="Comercio" 
+                                                       onclick="ajax:loginController.navToComercio()"
+                                                       icon-awesome="th">
+                                            </b:navLink>
+                                            <b:navLink value="Caja" 
+                                                       onclick="ajax:loginController.navToCaja()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                            <b:navLink value="PinPad" 
+                                                       onclick="ajax:loginController.navToPinpad()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                            <b:navLink value="Lote" 
+                                                       onclick="ajax:loginController.navToLote()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                            <b:navLink value="Cierres" 
+                                                       onclick="ajax:loginController.navToCierrePinpad()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                        </b:dropButton>
+                                    </b:buttonGroup>                                    
+                                </li>
+                            </ul>
+                            <br></br>
+
+                            <p:dataTable id="idDtblAuth" var="_lote" 
+                                         rendered="#{loteController.model!=null}"
+                                         value="#{loteController.model}"
+                                         reflow="true"
+                                         paginator="true" 
+                                         style="widthpassword:1024px; font-size: small"
+                                         rows="5" paginatorPosition="bottom" 
+                                         paginatorTemplate=
+                                         "{RowsPerPageDropdown} {FirstPageLink}
+                                         {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                         lazy="true">
+                                <p:column headerText="Tid Pinpad" sortBy="#{_lote.pinpad.tid}">
+                                    <h:outputText value="#{_lote.pinpad.tid}"/>
+                                </p:column>
+                                <p:column headerText="Número Lote" sortBy="#{_lote.numeroLote}">
+                                    <h:outputText value="#{_lote.numeroLote}"/>
+                                </p:column>
+                                <p:column headerText="Valor" sortBy="#{loteController.obtenerValorTotalLote(_lote)}">
+                                    <h:outputText value="#{loteController.obtenerValorTotalLote(_lote)}"/>
+                                </p:column>
+                                <p:column headerText="Estado" sortBy="#{_lote.estadoLote}">
+                                    <h:outputText value="#{_lote.estadoLote}"/>
+                                </p:column>
+
+                            </p:dataTable>
+                        </b:column>
+                    </b:row>
+                </b:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../../TemplateBA/baseLayoutMenuLeft.xhtml">
+
+            <ui:define name="content">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <h3>COMERCIOS</h3>
+                        <h4>Ver</h4>
+                    </li>
+                    <li class="list-inline-item"  style="float: inline-end;">
+                        <ui:include
+                            src="/logout.xhtml" />
+                    </li>
+                </ul>
+
+                <b:form id="idFrmNuevoComercio">
+
+                    <b:row>
+                        <b:column>
+                            <b:formGroup>
+                                <b:inputText id="idLblCodigo" 
+                                             label="Código:" 
+                                             style="width:200px;"
+                                             labelStyle="width:80px;" 
+                                             readonly="true"
+                                             value="#{comercioController.selected.codComercio}">
+                                </b:inputText>
+                                <b:inputText id="idLblRUCBA" 
+                                             readonly="true"
+                                             label="RUC:" 
+                                             style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{comercioController.selected.ruc}">
+                                </b:inputText>
+                                <b:inputText id="idLblCodigoBA" 
+                                             label="Código BA:" 
+                                             style="width:200px;"
+                                             readonly="true"
+                                             labelStyle="width:80px;"
+                                             value="#{comercioController.selected.codComercioBa}">
+                                </b:inputText>
+                                <b:inputText id="idLblNombre"
+                                             label="Nombre:" 
+                                             style="width:200px;"
+                                             readonly="true"
+                                             labelStyle="width:80px;"
+                                             value="#{comercioController.selected.nombre}">
+                                </b:inputText>
+                                <b:inputText id="idLblNombreCiudad"
+                                             label="Ciudad:" 
+                                             style="width:200px;"
+                                             readonly="true"
+                                             labelStyle="width:80px;"
+                                             value="#{comercioController.selected.ciudad}">
+                                </b:inputText>
+                            </b:formGroup>
+                        </b:column>
+                    </b:row>
+                    <b:button look="link"
+                              value="Cancelar"
+                              href="listar"/>
+                </b:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <body>
+
+        <ui:composition template="./../../TemplateBA/baseLayoutMenuLeft.xhtml">
+            <ui:define name="content">
+                <b:form id="idFrmUsuario" style="background: white !important;">
+                    <b:messages id="idMessages" 
+                                showDetail="true" 
+                                showSummary="false" />
+                    <b:row>
+                        <b:column col-md="12" col-xs="12">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h3>ROLES</h3>
+                                </li>
+                                <li class="list-iline-item">
+                                    <b:container>
+                                        <b:commandButton look="primary"
+                                                         icon-awesome="plus"
+                                                         process="@this"
+                                                         action="#{grupoUsuarioController.nuevoRol()}"
+                                                         value="Nuevo"
+                                                         update="@form"
+                                                         style="color: white">
+                                        </b:commandButton>
+                                    </b:container>
+                                </li>
+                            </ul>
+                            <br></br>
+                            <b:dataTable id="idDtblRol"
+                                         lang="es" 
+                                         var="_rol" 
+                                         col-lg="12" 
+                                         col-md="12" 
+                                         col-sm="12" 
+                                         excel="true"
+                                         csv="true"
+                                         pdf="true"
+                                         select="true"
+                                         ajax="true"
+                                         style="font-size: smaller; width: auto"
+                                         selectionMode="single"
+                                         onselect="ajax:grupoUsuarioController.onSelect(_rol.id);"
+                                         page-length="5"
+                                         responsive="true"  
+                                         value="#{grupoUsuarioController.items}">
+                                <b:dataTableColumn label="Rol" value="#{_rol.rol}"/>
+                                <b:dataTableColumn label="Acciones" style="text-align: center; width: 120px;">
+                                    <b:buttonGroup>
+                                        <b:commandButton icon-awesome="eye" 
+                                                         process="@this" 
+                                                         ajax="false"
+                                                         action="#{grupoUsuarioController.verRol(_rol)}">
+                                            <f:ajax execute="@form"/>
+                                        </b:commandButton>
+                                        <b:commandButton icon-awesome="pencil" 
+                                                         process="@this" 
+                                                         ajax="false"
+                                                         action="#{grupoUsuarioController.editarRol(_rol)}">
+                                            <f:ajax execute="@form"/>         
+                                        </b:commandButton>
+                                        <b:commandButton icon-awesome="trash" 
+                                                         onclick="$('.modalPseudoClass').modal();
+                                                                 return false;"
+                                                         p:data-target="#amodal"
+                                                         p:data-toggle="modal"/>
+                                    </b:buttonGroup>
+                                </b:dataTableColumn>
+                            </b:dataTable>
+                        </b:column>
+                    </b:row>
+                </b:form>
+
+                <b:form>
+                    <b:modal id= "amodal" 
+                             title="Confirmar eliminación" 
+                             styleClass="modalPseudoClass">
+                        <p>¿Seguro de eliminar?</p>
+                        <f:facet name="footer">
+                            <b:commandButton value="Si" 
+                                             ajax="true"
+                                             actionListener="#{grupoUsuarioController.eliminarRol()}"/>
+                            <b:button value="Cancelar" dismiss="modal" />
+                        </f:facet>
+                    </b:modal>                        
+                </b:form>   
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

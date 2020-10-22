@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RolCreateDlg" 
+                  widgetVar="RolCreateDialog" 
+                  modal="true" 
+                  closeOnEscape="true"
+                  resizable="false" 
+                  appendTo="@(body)" header="#{bundle.CreateRolTitle}">
+            <h:form id="RolCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="3" rendered="#{rolController.selected != null}">
+                        <p:outputLabel value="Nombre del rol:" for="gru_nombre" />
+                        <p:inputText id="gru_nombre" autocomplete="off" maxlength="25"
+                                     required="true" 
+                                     validator="noBlankSpaceValidator"
+                                     value="#{rolController.selected.gru_nombre}" 
+                                     title="Nombre del nuevo rol" >
+                            <f:validateLength minimum="1" maximum="25" />
+                        </p:inputText>
+                        <p:message for="@previous"/>
+
+                        <p:outputLabel value="Alias" for="gru_id" />
+                        <p:selectOneMenu id="gru_id" 
+                                         value="#{rolController.selected.gru_id}" 
+                                         style="width:125px" 
+                                         required="true"
+                                         title="Identificador o alias del nuevo rol">
+                            <f:selectItem itemLabel="--Seleccione--" 
+                                          itemValue="" />
+                            <f:selectItem itemLabel="Administrador" 
+                                          itemValue="ADMIN" />
+                        </p:selectOneMenu>                        
+                        <p:message for="@previous"/>
+
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{rolController.create}" value="Guardar" update="display,idFrmBaseLayoutMenuLeft:RolListForm:datalist" oncomplete="handleSubmit(args,'RolCreateDialog');" process="@form" onclick="RolCreateDialog.hide()"/>
+                    <p:commandButton value="Cancelar" onclick="RolCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../../TemplateBA/baseLayoutMenuLeft.xhtml">
+
+            <ui:define name="content">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <h3>CAJA</h3>
+                        <h4>Crear</h4>
+                    </li>
+                    <li class="list-inline-item"  style="float: inline-end;">
+                        <ui:include
+                            src="/logout.xhtml" />
+                    </li>
+                </ul>
+
+                <b:form id="idFrmNuevoTerminalCaja">
+
+                    <b:row>
+                        <b:column>
+                            <b:formGroup>
+                                <b:focus target="idLblIPTerminalCaja"/>
+                                <b:inputText id="idLblIPTerminalCaja" 
+                                             label="IP" 
+                                             maxlength="15"
+                                             autocomplete="off"
+                                             validator="noBlankSpaceValidator" 
+                                             required="true"
+                                             style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{terminalCajaController.selected.ip}">
+                                    <f:validateLength minimum="7" maximum="15" />
+                                </b:inputText>
+                                <b:message for="@previous" />
+
+                                <b:inputText id="idLblCodOficinaCaja" 
+                                             label="Código Oficina" 
+                                             maxlength="10"
+                                             autocomplete="off"
+                                             validator="noBlankSpaceValidator" 
+                                             validatorMessage="Solo se permiten números"
+                                             required="true"
+                                             style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{terminalCajaController.selected.codOficina}">
+                                    <f:validateLength minimum="1" maximum="10" />
+                                    <f:validateRegex pattern="[0-9]*"/>
+                                </b:inputText>
+                                <b:message for="@previous" />
+
+                                <b:inputText id="idLblCodTerminalCaja" 
+                                             required="true"
+                                             maxlength="10"
+                                             autocomplete="off"
+                                             validatorMessage="Solo se permiten números"
+                                             validator="noBlankSpaceValidator" 
+                                             label="Código Terminal" 
+                                             style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{terminalCajaController.selected.codTerminal}">
+                                    <f:validateLength minimum="1" maximum="10" />
+                                    <f:validateRegex pattern="[0-9]*"/>
+                                </b:inputText>
+                                <b:message for="@previous" />
+                                <b:formGroup>
+                                    <b:panelGrid columns="1">
+                                        <b:selectOneMenu id="idComercioTerminalCajaCodigoCom" 
+                                                         required="true"
+                                                         label="Comercio"
+                                                         value="#{terminalCajaController.selected.comercio}" 
+                                                         style="width: 13pc;">
+                                            <f:selectItem itemLabel="--Seleccione-- " itemValue="" />
+                                            <f:selectItems value="#{terminalCajaController.obtenerComercios()}" 
+                                                           var="_terCom" 
+                                                           itemValue="#{_terCom}" 
+                                                           itemLabel="#{_terCom.nombre}"/>
+                                        </b:selectOneMenu>
+                                        <b:message for="@previous" />
+
+                                        <b:selectOneMenu id="idComercioTerminalCajaPinPad"  
+                                                         required="true"
+                                                         label="Pinpad"
+                                                         value="#{terminalCajaController.selected.pinpadPrincipal}" 
+                                                         style="width: 13pc;">
+                                            <f:selectItem itemLabel="--Seleccione-- " itemValue="" />
+                                            <f:selectItems value="#{terminalCajaController.obtenerPinPads()}" 
+                                                           var="_terPP" 
+                                                           itemValue="#{_terPP}" 
+                                                           itemLabel="#{_terPP.ip}  #{_terPP.puerto}"/>
+                                        </b:selectOneMenu>
+                                        <b:message for="@previous" />
+                                    </b:panelGrid>
+                                </b:formGroup>                                
+                            </b:formGroup>
+                        </b:column>
+                    </b:row>
+
+                    <b:commandButton id="idBtnSaveTerminalCaja" type="submit"
+                                     actionListener="#{terminalCajaController.create()}"
+                                     value="Guardar"/>
+
+                    <b:button look="link"
+                              value="Cancelar"
+                              href="listar"/>
+                </b:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

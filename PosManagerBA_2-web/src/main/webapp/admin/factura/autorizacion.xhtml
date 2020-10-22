@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+        <b:row>
+            <b:column col-md="12">
+                <br></br>
+
+                <b:inputText label-small-screen="4" 
+                             small-screen="8" 
+                             disabled="true"
+                             label="Código:"
+                             style="width: 135px;"
+                             value="#{autorizacionController.currentAutorizacion.codAutorizacion}"/>
+                <b:inputText label-small-screen="4" 
+                             disabled="true"
+                             small-screen="8"  
+                             style="width: 135px;"
+                             label="Estado:"
+                             value="#{autorizacionController.currentAutorizacion.estado}"/>
+                <b:inputText label-small-screen="4" 
+                             small-screen="8"  
+                             style="width: 135px;"
+                             disabled="true"
+                             label="Interés:"
+                             value="#{autorizacionController.currentAutorizacion.interes}"/>
+                <b:inputText label-small-screen="4" 
+                             small-screen="8"  
+                             style="width: 135px;"
+                             disabled="true"
+                             label="Plazo diferido:"
+                             value="#{autorizacionController.currentAutorizacion.plazoDiferido}"/>
+                <b:inputText label-small-screen="4" 
+                             small-screen="8"  
+                             style="width: 135px;"
+                             disabled="true"
+                             label="Secuencial:"
+                             value="#{autorizacionController.currentAutorizacion.secuencial}"/>
+                <b:inputText label-small-screen="4" 
+                             small-screen="8"  
+                             style="width: 135px;"
+                             disabled="true"
+                             label="Tipo diferido:"
+                             value="#{autorizacionController.currentAutorizacion.tipoDiferido}"/>
+                <b:inputText label-small-screen="4" 
+                             small-screen="8"  
+                             style="width: 135px;"
+                             disabled="true"
+                             label="Autorización:"
+                             value="#{autorizacionController.currentAutorizacion.totalAutoriza}"/>
+                <b:inputText label-small-screen="4" 
+                             small-screen="8"  
+                             disabled="true"
+                             style="width: 135px;"
+                             label="Venta"
+                             value="#{autorizacionController.currentAutorizacion.totalVenta}"/>
+                <b:inputText label-small-screen="4" 
+                             small-screen="8"  
+                             label="Comercio"
+                             style="width: 135px;"
+                             disabled="true"
+                             value="#{autorizacionController.currentAutorizacion.comercio.nombre}"/>
+                <b:inputText label-small-screen="4" 
+                             small-screen="8"  
+                             label="Factura"
+                             style="width: 135px;"
+                             disabled="true"
+                             value="#{autorizacionController.currentAutorizacion.factura.codFactura}"/>
+                <b:inputText label-small-screen="4" 
+                             small-screen="8"  
+                             disabled="true"
+                             style="width: 135px;"
+                             label="Caja"
+                             value="#{autorizacionController.currentAutorizacion.terminalCaja.ip}"/>
+            </b:column>
+        </b:row>
+</html>

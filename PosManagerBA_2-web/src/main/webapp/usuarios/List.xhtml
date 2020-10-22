@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="/TemplateBA/baseLayoutMenuLeft.xhtml">
+        
+
+            <ui:define name="title">
+                <h:outputText value="#{bundle.ListUsuarioTitle}"></h:outputText>
+            </ui:define>
+
+            <ui:define name="content" class="center_contentContent">
+                <h:form id="UsuarioListForm">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                    <p:panel header="Listado de Usuarios del sistema">
+                        <p:commandButton id="createButton" 
+                                         icon="ui-icon-plus"
+                                         value="#{bundle.Create}"
+                                         actionListener="#{usuarioController.prepareCreate}" 
+                                         ajax="true" 
+                                         update="idFrmBaseLayoutMenuLeft:UsuarioCreateForm" 
+                                         oncomplete="PF('UsuarioCreateDialog').show()"/>
+                        <h:outputLink value="../admin/comercio/contentList.xhtml" 
+                                      style="float: inline-end;">
+                            <h:outputText value="Volver"/>
+                        </h:outputLink>
+                        <h:outputLink value="./../rol/List.xhtml" 
+                                      style="float: inline-end;">
+                            <h:outputText value="|    Roles    |    "/>
+                        </h:outputLink>
+
+                        <p:dataTable id="datalist" var="_usuario"
+                                     value="#{usuarioController.items}" 
+                                     selectionMode="single" 
+                                     selection="#{usuarioController.selected}"
+                                     paginator="true" 
+                                     paginatorPosition="bottom"
+                                     rowKey="#{_usuario.id}"
+                                     rows="10"
+                                     reflow="true"
+                                     rowsPerPageTemplate="10,20,30,40,50">
+                            <p:column style="text-align: center;">
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListUsuarioTitle_usu_nombre}"/>
+                                </f:facet>
+                                <h:outputText value="#{_usuario.usu_nombre}"/>
+                            </p:column>
+                            <p:column style="text-align: center;">
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListUsuarioTitle_usu_login}"/>
+                                </f:facet>
+                                <h:outputText value="#{_usuario.usu_login}"/>
+                            </p:column>
+                            <p:column style="text-align: center;">
+                                <f:facet name="header">
+                                    <h:outputText value="Rol"/>
+                                </f:facet>
+                                <h:outputText value="#{usuarioController.obtenerRolUsuario(_usuario)}"/>
+                            </p:column>
+                            <p:column style="text-align: center;">
+                                <f:facet name="header">
+                                    <h:outputText value="Acciones"/>
+                                </f:facet>
+                                <p:commandButton id="viewButton"   
+                                                 icon="ui-icon-search" 
+                                                 update="idFrmBaseLayoutMenuLeft:UsuarioViewForm" 
+                                                 action="#{usuarioController.ver(_usuario)}"
+                                                 oncomplete="PF('UsuarioViewDialog').show()"/>
+                                <p:commandButton id="editButton"   
+                                                 icon="ui-icon-pencil" 
+                                                 update="idFrmBaseLayoutMenuLeft:UsuarioEditForm" 
+                                                 action="#{usuarioController.editar(_usuario)}"
+                                                 oncomplete="PF('UsuarioEditDialog').show()"/>
+                                <p:commandButton id="deleteButton" 
+                                                 icon="ui-icon-trash"  
+                                                 actionListener="#{usuarioController.destroy(_usuario)}" 
+                                                 update="datalist"/>
+
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+
+                <ui:include src="Create.xhtml"/>
+                <ui:include src="Edit.xhtml"/>
+                <ui:include src="View.xhtml"/>
+            </ui:define>
+        </ui:composition>
+
+    </body></html>

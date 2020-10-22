@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="reporte autorizacion" columnCount="100" pageWidth="250" pageHeight="800" columnWidth="0" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10">
+	<parameter name="codAutorizacion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="baseConsumo14" class="java.lang.String"/>
+	<parameter name="baseConsumo0" class="java.lang.String"/>
+	<parameter name="subtotal" class="java.lang.String"/>
+	<parameter name="iva" class="java.lang.String"/>
+	<parameter name="total" class="java.lang.String"/>
+	<parameter name="fechaHoraActual" class="java.lang.String"/>
+	<parameter name="titular" class="java.lang.String"/>
+	<parameter name="telefono" class="java.lang.String"/>
+	<parameter name="ci" class="java.lang.String"/>
+	<parameter name="visa" class="java.lang.String"/>
+	<parameter name="ruc" class="java.lang.String"/>
+	<parameter name="codigo" class="java.lang.String"/>
+	<parameter name="lote" class="java.lang.String"/>
+	<parameter name="terminal" class="java.lang.String"/>
+	<parameter name="referencia" class="java.lang.String"/>
+	<parameter name="mid" class="java.lang.String"/>
+	<parameter name="adq" class="java.lang.String"/>
+	<parameter name="emv_tsi" class="java.lang.String"/>
+	<parameter name="emv_tvr" class="java.lang.String"/>
+	<parameter name="emv_aid" class="java.lang.String"/>
+	<parameter name="preferedName" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT 
+    *FROM AUTORIZACION 
+        INNER JOIN TERMINALCAJA ON AUTORIZACION.TERMINALCAJA_ID=TERMINALCAJA.ID
+        INNER JOIN FACTURA ON AUTORIZACION.FACTURA_ID=FACTURA.ID
+        INNER JOIN FACTURA_BASECONSUMO ON FACTURA.ID = FACTURA_BASECONSUMO.FACTURA_ID
+        INNER JOIN BASECONSUMO ON FACTURA_BASECONSUMO.BASECONSUMOS_ID=BASECONSUMO.ID
+        INNER JOIN COMERCIO ON AUTORIZACION.COMERCIO_ID=COMERCIO.ID
+            INNER JOIN TERMINALPINPAD ON COMERCIO.ID=TERMINALPINPAD.COMERCIO_ID
+            INNER JOIN LOTE ON TERMINALPINPAD.ID=LOTE.PINPAD_ID
+        WHERE AUTORIZACION.CODAUTORIZACION=$P{codAutorizacion};]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codautorizacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="estado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="interes" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="plazodiferido" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="secuencial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipodiferido" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalautoriza" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalventa" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="comercio_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="factura_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="terminalcaja_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codoficina" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codterminal" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ip" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pinpadprincipal_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codfactura" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="iva" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="subtotal" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="baseconsumos_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tarifa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="baseconsumo_factura_fk" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codcomercio" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codcomercioba" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numerolote" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pinpad_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="codautorizacion">
+		<groupExpression><![CDATA[$F{codautorizacion}]]></groupExpression>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="256">
+			<staticText>
+				<reportElement x="22" y="16" width="72" height="25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="Courier New" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATAExpress]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="41" width="42" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Autorización:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="-534" width="121" height="15"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Base consumo tarifa 0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="59" width="10" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:US$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="88" width="89" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACEPTO PAGAR SIN PROTESTO AL EMISOR
+DE LA TARJETA EL TOTAL DE ESTE PAGARÉ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="102" width="23" height="6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuenca ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="128" width="90" height="8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Firma:............................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="136" width="30" height="6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TITULAR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="142" width="24" height="7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="64" y="142" width="8" height="7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CI:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="154" width="16" height="7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[VISA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="178" width="22" height="5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[RUC:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="183" width="22" height="5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[CÓDIGO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="55" y="183" width="12" height="5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[LOTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="188" width="22" height="5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[TERMINAL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="193" width="22" height="5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[MID:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="188" width="11" height="5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[REF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="193" width="10" height="5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[ADQ:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="208" width="36" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[PREFERED NAME:]]></text>
+			</staticText>
+			<textField hyperlinkType="None">
+				<reportElement x="70" y="64" width="34" height="6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{baseConsumo0}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="70" y="69" width="34" height="6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{subtotal}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="70" y="74" width="34" height="6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{iva}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="70" y="79" width="34" height="6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{total}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="32" y="102" width="66" height="6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="4"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fechaHoraActual}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="107" width="26" height="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ecuador]]></text>
+			</staticText>
+			<textField hyperlinkType="None">
+				<reportElement x="41" y="136" width="58" height="6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{titular}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="33" y="142" width="29" height="7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{telefono}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="72" y="142" width="27" height="7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ci}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="41" y="154" width="36" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{visa}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="22" y="178" width="33" height="5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ruc}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="22" y="183" width="33" height="5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{codigo}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="67" y="183" width="32" height="5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{lote}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="22" y="188" width="33" height="5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{terminal}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="67" y="188" width="32" height="5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{referencia}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="22" y="193" width="33" height="5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{mid}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="67" y="193" width="32" height="5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{adq}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="227" width="29" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[ETV AID:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="215" width="28" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[EMV TSI:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="221" width="29" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[ETV TVR:]]></text>
+			</staticText>
+			<textField hyperlinkType="None">
+				<reportElement x="34" y="215" width="46" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{emv_tsi}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="34" y="221" width="46" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{emv_tvr}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="34" y="227" width="46" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{emv_aid}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="26" y="242" width="56" height="6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[-VOUCHER-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="59" width="56" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BASE CONSUMO TARIFA 14]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="64" width="56" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BASE CONSUMO TARIFA 0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="69" width="56" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUBTOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="74" width="56" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="79" width="56" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="64" width="10" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:US$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="69" width="10" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:US$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="74" width="10" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:US$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="79" width="10" height="6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:US$]]></text>
+			</staticText>
+			<textField hyperlinkType="None">
+				<reportElement x="61" y="41" width="84" height="13"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{codAutorizacion}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="72" y="60" width="39" height="10"/>
+				<textElement>
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{baseConsumo14}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="38" y="214" width="56" height="6"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{preferedName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

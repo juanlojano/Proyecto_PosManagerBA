@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../TemplateBA/baseLayoutMenuLeft.xhtml">
+            <ui:define name="content">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <h3>COMERCIOS</h3>
+                        <h4>Crear</h4>
+                    </li>
+                    <li class="list-inline-item"  style="float: inline-end;">
+                        <ui:include
+                            src="/logout.xhtml" />
+                    </li>
+                </ul>
+
+                <b:form id="idFrmNuevoComercio">
+                    <b:row>
+                        <b:column>
+                            <b:formGroup>
+                                <b:form id="loginForm">
+                                    <b:focus target="idLblCodigo"/>
+                                    <b:inputText id="idLblCodigo" 
+                                                 autocomplete="off"
+                                                 maxlength="20"
+                                                 validator="noBlankSpaceValidator" 
+                                                 required="true"
+                                                 label="Código:" style="width:200px;"
+                                                 labelStyle="width:80px;"
+                                                 validatorMessage="Solo se permiten números"
+                                                 value="#{comercioController.selected.codComercio}">
+                                        <f:validateLength minimum="3" maximum="20" />
+                                        <f:validateRegex pattern="[0-9]*"/>
+                                    </b:inputText>
+                                    <b:message for="@previous" />
+
+                                    <b:inputText id="idLblRUCBA" 
+                                                 autocomplete="off"
+                                                 maxlength="13"
+                                                 validator="noBlankSpaceValidator" 
+                                                 required="true"
+                                                 label="RUC:" style="width:200px;"
+                                                 labelStyle="width:80px;"
+                                                 validatorMessage="Solo se permiten números"
+                                                 value="#{comercioController.selected.ruc}">
+                                        <f:validateLength minimum="13" maximum="13" />
+                                        <f:validateRegex pattern="[0-9]*"/>
+                                    </b:inputText>
+                                    <b:message for="@previous" />
+
+                                    <b:inputText id="idLblCodigoBA" 
+                                                 required="true" 
+                                                 autocomplete="off"
+                                                 maxlength="20"
+                                                 validator="noBlankSpaceValidator" 
+                                                 label="Código BA:" style="width:200px;"
+                                                 labelStyle="width:80px;"
+                                                 validatorMessage="Solo se permiten números"
+                                                 value="#{comercioController.selected.codComercioBa}">
+                                        <f:validateLength minimum="3" maximum="20" />
+                                        <f:validateRegex pattern="[0-9]*"/>
+                                    </b:inputText>
+                                    <b:message for="@previous" />
+
+                                    <b:inputText id="idLblNombre"
+                                                 autocomplete="off"
+                                                 required="true"
+                                                 maxlength="40"
+                                                 validator="noBlankSpaceValidator" 
+                                                 label="Nombre:" style="width:200px;"
+                                                 labelStyle="width:80px;"
+                                                 value="#{comercioController.selected.nombre}">
+                                        <f:validateLength minimum="3" maximum="40" />
+                                    </b:inputText>
+                                    <b:message for="@previous" />
+                                    
+                                    <b:inputText id="idLblNombreCiudad"
+                                                 autocomplete="off"
+                                                 required="true"
+                                                 maxlength="40"
+                                                 validator="noBlankSpaceValidator" 
+                                                 label="Ciudad:" style="width:200px;"
+                                                 labelStyle="width:80px;"
+                                                 value="#{comercioController.selected.ciudad}">
+                                        <f:validateLength minimum="3" maximum="40" />
+                                    </b:inputText>
+                                    <b:message for="@previous" />
+                                </b:form>
+                            </b:formGroup>
+                        </b:column>
+                    </b:row>
+                    <b:commandButton id="idBtnSaveComercio" 
+                                     type="submit"
+                                     actionListener="#{comercioController.create()}"
+                                     value="Guardar"/>
+                    <b:button look="link"
+                              value="Cancelar"
+                              href="listar"/>
+                </b:form>
+
+            </ui:define>
+
+        </ui:composition>
+    </body>
+
+</html>

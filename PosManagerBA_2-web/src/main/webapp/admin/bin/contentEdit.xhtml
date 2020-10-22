@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+        <ui:composition template="./../../TemplateBA/baseLayoutMenuLeft.xhtml">            
+            <ui:define name="content">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <h3>BIN TARJETA</h3>
+                        <h4>Editar</h4>
+                    </li>
+                    <li class="list-inline-item"  style="float: inline-end;">
+                        <ui:include
+                            src="/logout.xhtml" />
+                    </li>
+                </ul>
+                <b:form id="idFrmEditarBin">
+                    <b:row>
+                        <b:column hidden="lg,md,sm,xs">
+                            <b:inputText id="idLblId" 
+                                         label="Id" style="width:200px;"
+                                         labelStyle="width:80px;"
+                                         value="#{binTarjetaController.selected.id}">
+                            </b:inputText>
+                        </b:column>                        
+                        <b:column>
+                            <b:formGroup>
+                                <b:focus target="idLblNumero"/>
+                                <b:inputText id="idLblNumero"
+                                             label="Número" 
+                                             required="true"
+                                             style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{binTarjetaController.selected.numero}">
+                                </b:inputText>
+
+                                <b:inputText id="idLblDescripcion"
+                                             label="Descripción" 
+                                             required="true"
+                                             style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{binTarjetaController.selected.descripcion}"/>
+                                <b:message for="@previous" />
+
+                                <b:inputText id="idLblDescripcion0"
+                                             label="Tipo Pago" 
+                                             required="true"
+                                             style="width:200px;"
+                                             labelStyle="width:80px;"
+                                             value="#{binTarjetaController.selected.tipoPago.descripcion}"/>
+                                <b:message for="@previous" />
+
+                                <b:panelGrid columns="1">
+                                    <b:selectOneMenu id="idTipoPago"
+                                                     required="true"
+                                                     label="Tipo Pago"
+                                                     value="#{binTarjetaController.selected.tipoPago}" 
+                                                     style="width: 13pc;">
+                                        <f:selectItem itemLabel="--Seleccione-- " itemValue="" />
+                                        <f:selectItems value="#{binTarjetaController.obtenerTiposPago()}" 
+                                                       var="_tipPag" 
+                                                       itemValue="#{_tipPag}" 
+                                                       itemLabel="#{_tipPag.descripcion}"/>
+                                    </b:selectOneMenu>
+                                    <b:message for="@previous" />
+                                </b:panelGrid>
+                            </b:formGroup>
+                        </b:column>
+                    </b:row>
+                    <b:commandButton id="idBtnSavePP" 
+                                     type="submit"
+                                     actionListener="#{binTarjetaController.update()}"
+                                     value="Guardar"/>
+                    <b:button look="link"
+                              value="Cancelar"
+                              href="listar"/>
+                </b:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

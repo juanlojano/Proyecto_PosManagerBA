@@ -1,0 +1,250 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./../../TemplateBA/baseLayoutMenuLeft.xhtml">
+            <ui:define name="content">
+                <b:form id="idFormAut">
+                    <b:row id="idFormAutRow">
+                        <b:column col-md="12" col-xs="12" id="idFormAutRowCol">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h3>AUTORIZACIÓN</h3>
+                                </li>
+                                <li class="list-inline-item"  style="float: inline-end;">
+                                    <ui:include
+                                        src="/logout.xhtml" />
+                                </li>
+                                <li class="list-iline-item">
+                                    <b:buttonGroup>
+                                        <b:dropButton look="info" value="Menu" hidden="lg,md,sm">
+                                            <b:navLink value="Autorizacion" 
+                                                       onclick="ajax:loginController.navToAuth()"
+                                                       icon-awesome="gear">
+                                            </b:navLink>
+                                            <b:navLink value="Facturas" 
+                                                       onclick="ajax:loginController.navToFacturas()"
+                                                       icon-awesome="clipboard">
+                                            </b:navLink>
+                                            <b:navLink value="Comercio" 
+                                                       onclick="ajax:loginController.navToComercio()"
+                                                       icon-awesome="th">
+                                            </b:navLink>
+                                            <b:navLink value="Caja" 
+                                                       onclick="ajax:loginController.navToCaja()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                            <b:navLink value="PinPad" 
+                                                       onclick="ajax:loginController.navToPinpad()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                            <b:navLink value="Lote" 
+                                                       onclick="ajax:loginController.navToLote()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                            <b:navLink value="Cierres" 
+                                                       onclick="ajax:loginController.navToCierrePinpad()"
+                                                       icon-awesome="cog">
+                                            </b:navLink>
+                                        </b:dropButton>
+                                    </b:buttonGroup>                                    
+                                </li>
+                            </ul>
+
+                            <h:panelGrid rendered="#{autorizacionController.obtenerCodigoFactura() ne null}">
+                                <p:outputLabel value="Código de Factura: "/>
+                                <p:outputLabel id="idCodigoFactura" 
+                                               value="#{autorizacionController.obtenerCodigoFactura()}"/>
+                            </h:panelGrid>
+                            <p:dataTable id="idDtblAuth" var="_auth" 
+                                         rendered="#{autorizacionController.model!=null}"
+                                         value="#{autorizacionController.model}"
+                                         reflow="true"
+                                         paginator="true" 
+                                         style="widthpassword:1024px; font-size: small"
+                                         rows="5" paginatorPosition="bottom" 
+                                         paginatorTemplate=
+                                         "{RowsPerPageDropdown} {FirstPageLink}
+                                         {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                         lazy="true">
+
+                                <p:column headerText="IdTransacción" sortBy="#{_auth.idTransaccion}">
+                                    <h:outputText value="#{_auth.idTransaccion}"/>
+                                </p:column>
+
+                                <p:column headerText="Número" sortBy="#{_auth.codAutorizacion}">
+                                    <h:outputText value="#{_auth.codAutorizacion}"/>
+                                </p:column>
+
+                                <p:column headerText="Estado" sortBy="#{_auth.estado}">
+                                    <h:outputText value="#{_auth.estado}"/>
+                                </p:column>
+
+                                <p:column headerText="Estado Autorización" sortBy="#{_auth.estadoAutorizacion}" 
+                                          style="width: -moz-max-content">
+                                    <h:outputText value="#{_auth.estadoAutorizacion}"/>
+                                </p:column>
+
+                                <p:column headerText="Descripción" sortBy="#{_auth.descripcionRespuesta}" 
+                                          style="width: -moz-max-content">
+                                    <h:outputText value="#{_auth.descripcionRespuesta}"/>
+                                </p:column>
+
+                                <p:column headerText="Total" sortBy="#{_auth.totalVenta}">
+                                    <h:outputText value="#{_auth.totalVenta}"/>
+                                </p:column>
+
+                                <p:column headerText="Factura" sortBy="#{_auth.factura.codFactura}">
+                                    <h:outputText value="#{_auth.factura.codFactura}"/>
+                                </p:column>
+
+                                <p:column headerText="Comercio" sortBy="#{_auth.comercio.codComercioBa}">
+                                    <h:outputText value="#{_auth.comercio.codComercioBa}"/>
+                                </p:column>
+
+                                <p:column headerText="Interés" sortBy="#{_auth.interes}">
+                                    <h:outputText value="#{_auth.interes}"/>
+                                </p:column>
+
+                                <p:column headerText="Acciones" style="text-align: -moz-center;">
+                                    <b:commandButton icon-awesome="eye" 
+                                                     process="@this" 
+                                                     title="Ver autorización"
+                                                     action="#{autorizacionController.verAutorizacion(_auth)}"/>
+
+                                    <p:commandButton oncomplete="PF('anullDialog').show()"  
+                                                     style="width: 39px;height: 32px;"
+                                                     disabled="#{autorizacionController.verificarEstadoAutorizacion(_auth)}"
+                                                     title="#{autorizacionController.mostrarTituloAutorizacion(_auth)}"
+                                                     icon="ui-icon-circle-triangle-e">
+                                        <f:setPropertyActionListener value="#{_auth}" 
+                                                                     target="#{autorizacionController.selectedAuth}" />
+                                    </p:commandButton>
+                                </p:column>
+                            </p:dataTable>
+
+                            <p:blockUI block="idDtblAuth" trigger="idDtblAuth">
+                                LOADING<br />
+                                <p:graphicImage name="./../resources/gif/ajaxloadingbar.gif"/>
+                            </p:blockUI>
+
+                            <p:dataTable id="idDtblAuth0" var="_auth" 
+                                         rendered="#{autorizacionController.model==null}"
+                                         value="#{autorizacionController.obtenerItemsAutorizacion()}"
+                                         reflow="true"
+                                         paginator="true" 
+                                         style="widthpassword:1024px; font-size: small"
+                                         rows="5" paginatorPosition="bottom" 
+                                         paginatorTemplate=
+                                         "{RowsPerPageDropdown} {FirstPageLink}
+                                         {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                         lazy="true">
+                                <p:column headerText="ID" sortBy="#{_auth.id}">
+                                    <h:outputText value="#{_auth.id}"/>
+                                </p:column>
+
+                                <p:column headerText="IdTransacción" sortBy="#{_auth.idTransaccion}">
+                                    <h:outputText value="#{_auth.idTransaccion}"/>
+                                </p:column>
+
+                                <p:column headerText="Número" sortBy="#{_auth.codAutorizacion}">
+                                    <h:outputText value="#{_auth.codAutorizacion}"/>
+                                </p:column>
+
+                                <p:column headerText="Estado" sortBy="#{_auth.estado}">
+                                    <h:outputText value="#{_auth.estado}"/>
+                                </p:column>
+
+                                <p:column headerText="Estado Autorización" sortBy="#{_auth.estadoAutorizacion}">
+                                    <h:outputText value="#{_auth.estadoAutorizacion}"/>
+                                </p:column>
+
+                                <p:column headerText="Total" sortBy="#{_auth.totalVenta}">
+                                    <h:outputText value="#{_auth.totalVenta}"/>
+                                </p:column>
+
+                                <p:column headerText="Factura" sortBy="#{_auth.factura.codFactura}">
+                                    <h:outputText value="#{_auth.factura.codFactura}"/>
+                                </p:column>
+
+                                <p:column headerText="Comercio" sortBy="#{_auth.comercio.id}">
+                                    <h:outputText value="#{_auth.comercio.id}"/>
+                                </p:column>
+
+                                <p:column headerText="Interés" sortBy="#{_auth.interes}">
+                                    <h:outputText value="#{_auth.interes}"/>
+                                </p:column>
+
+                                <p:column headerText="Acciones">
+                                    <p:column headerText="Acciones">
+                                        <b:commandButton icon-awesome="eye" 
+                                                         process="@this" 
+                                                         title="Ver autorización"
+                                                         action="#{autorizacionController.verAutorizacion(_auth)}"/>
+
+                                        <p:commandButton oncomplete="PF('anullDialog').show()"  
+                                                         style="width: 39px;height: 32px;"
+                                                         disabled="#{autorizacionController.verificarEstadoAutorizacion(_auth)}"
+                                                         title="#{autorizacionController.mostrarTituloAutorizacion(_auth)}"
+                                                         icon="ui-icon-circle-triangle-e">
+                                            <f:setPropertyActionListener value="#{_auth}" 
+                                                                         target="#{autorizacionController.selectedAuth}" />
+                                        </p:commandButton>
+                                    </p:column>
+                                </p:column>
+                            </p:dataTable>
+                            <b:button look="link"
+                                      value="Cancelar"
+                                      href="../factura/listar"
+                                      rendered="#{autorizacionController.obtenerCodigoFactura() ne null}"/>
+                        </b:column>
+                    </b:row>
+                </b:form>
+                <b:form>
+                    <b:modal id= "amodalAnull" 
+                             title="Confirmar anulación" 
+                             styleClass="modalPseudoClassAnulacion">
+                        <p>¿Esta seguro de anular esta autorización?</p>
+                        <f:facet name="footer">
+                            <b:commandButton value="Si" 
+                                             ajax="true"
+                                             actionListener="#{autorizacionController.anularAutorización()}"/>
+                            <b:button value="Cancelar" dismiss="modal" />
+                        </f:facet>
+                    </b:modal>                        
+                </b:form> 
+
+                <p:dialog header="Confirmación"  
+                          closable="true"
+                          draggable="true"
+                          modal="true"
+                          style="width: 20pc; height: 10pc; text-align: center"
+                          position="top" 
+                          resizable="false"
+                          showEffect="fade" 
+                          hideEffect="fade" 
+                          closeOnEscape="true" 
+                          widgetVar="anullDialog" 
+                          responsive="true">
+                    <h:outputLabel value="¿Esta seguro de anular?"/>
+                    <h:panelGrid id="idPnlAnulacion" columns="2" style="text-align: -moz-center;">
+                        <p:commandButton id="yesBtn" value="Si"
+                                         action="#{autorizacionController.anularAutorización()}"
+                                         process="@form"
+                                         update="idFrmBaseLayoutMenuLeft:idFormAut:idDtblAuth"
+                                         oncomplete="PF('anullDialog').hide()"/>
+                        <p:commandButton id="noBtn" value="No"
+                                         process="@form"
+                                         oncomplete="PF('anullDialog').hide()"/>
+                    </h:panelGrid>
+                </p:dialog >
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
